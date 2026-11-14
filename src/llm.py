@@ -30,7 +30,9 @@ load_dotenv()  # read GROQ_API_KEY, GEMINI_API_KEY, LLM_PROVIDER from .env
 PROVIDER = os.getenv("LLM_PROVIDER", "groq").strip().lower()
 
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+# llama-3.3-70b-versatile was retired by Groq (Nov 2026); gpt-oss-120b is the strongest
+# free general text model there now. See current list: client.models.list()
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 MAX_RETRIES = 5           # attempts per provider when we hit a 429

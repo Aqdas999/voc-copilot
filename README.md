@@ -30,7 +30,7 @@ ingest (Play Store, Reddit, synthetic) -> clean -> extract (LLM) -> cluster -> i
 The project runs entirely on **free-tier** LLM APIs. Every LLM call goes through one
 function, `call_llm(prompt)` in `src/llm.py`:
 
-- **Primary:** [Groq](https://console.groq.com) (Llama 3.3 70B) via its OpenAI-compatible API.
+- **Primary:** [Groq](https://console.groq.com) (`openai/gpt-oss-120b`, an open-weight model) via its OpenAI-compatible API.
 - **Backup:** [Google Gemini](https://aistudio.google.com) Flash, used automatically if Groq fails.
 - Switch the primary provider with `LLM_PROVIDER=groq|gemini` in `.env`.
 - 429 rate-limit errors are retried with exponential backoff (2s, 4s, 8s…), and results
