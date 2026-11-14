@@ -19,7 +19,7 @@ voc-copilot/
   CLAUDE.md
   README.md
   requirements.txt
-  .env.example          # ANTHROPIC_API_KEY=, REDDIT_CLIENT_ID=, REDDIT_CLIENT_SECRET=
+  .env.example          # GROQ_API_KEY=, GEMINI_API_KEY= (backup)
   .gitignore            # must include .env, __pycache__/, .venv/
   data/
     raw/                # scraper output, one CSV per source
@@ -65,9 +65,14 @@ Do NOT store usernames or personal data. Synthetic tickets must always be labele
 ```
 
 ## Conventions
-- Python 3.10+, pandas, anthropic SDK, streamlit. Keep dependencies minimal.
+- ZERO BUDGET: use only free-tier LLM APIs. Primary: Groq (OpenAI-compatible endpoint
+  https://api.groq.com/openai/v1, model llama-3.3-70b-versatile or current best free model).
+  Backup: Google Gemini free tier (Flash models). Put all LLM calls behind one function
+  `call_llm(prompt) -> str` in src/llm.py so the provider can be switched via .env (LLM_PROVIDER=groq|gemini).
+- Handle 429 rate-limit errors with retry + exponential backoff and sleep between calls.
+- Python 3.10+, pandas, openai SDK (for Groq), google-genai (backup), streamlit. Keep dependencies minimal.
 - API key read from .env via python-dotenv. Never hardcode or print keys.
-- Batch LLM calls (about 20 items per call). Cache results to disk so reruns are cheap.
+- Batch LLM calls (about 20 items per call). Cache results to disk so reruns don't use up free quota.
 - Version prompts: store them as constants named PROMPT_V1, PROMPT_V2... and record
   which version produced each eval result.
 - Every script runnable standalone: `python -m src.extract` etc.
