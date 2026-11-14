@@ -1,5 +1,7 @@
-# Secrets — never commit
+# Secrets — never commit (with or without the dot)
 .env
+env
+*.env
 
 # Python
 __pycache__/
