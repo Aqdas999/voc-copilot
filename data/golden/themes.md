@@ -9,7 +9,7 @@ can match several, so they add up to more than 100%. They're just a guide, not r
 
 | # | Theme | What it covers | Skim count |
 |---|-------|----------------|-----------:|
-| 1 | `delivery delay` | Late, stuck in transit, "marked delivered but not received" | ~246 (25%) |
+| 1 | `delivery delay` | Late, stuck in transit, or never arrived (no blame on the agent) | ~246 (25%) |
 | 2 | `order cancelled` | Myntra / seller cancels the order, often without reason | ~174 (18%) |
 | 3 | `refund delay` | Refund late, missing, smaller than paid, or sent to Myntra credit instead | ~133 (14%) |
 | 4 | `customer support` | Unresponsive, scripted replies, long queues, unhelpful agents — **only when support is the main complaint** | ~441 (45%)* |
@@ -21,6 +21,11 @@ can match several, so they add up to more than 100%. They're just a guide, not r
 | 10 | `size/fit mismatch` | Size chart wrong, runs small/large, inconsistent sizes across brands | ~50 (5%) |
 | 11 | `fake/counterfeit` | Not original, first copy, fraud/scam accusations about products | ~35–78 (4–8%) |
 | 12 | `M-Now late delivery` | Quick-delivery promise (30/60 min) missed or auto-cancelled | ~18 (2%) |
+| 13 | `delivery agent behaviour` | Agent misconduct: collects extra cash, rude or abusive, marks order "delivered" without handing it over, blocks the customer's number | ~38 (4%) |
+
+**Delivery delay vs. delivery agent behaviour:** if the order is just late or never arrives,
+use `delivery delay`. If the customer blames the agent's conduct (fake "delivered" status,
+extra money, rudeness), use `delivery agent behaviour`.
 
 \* "Customer support" is mentioned in almost half of complaints, but usually *alongside*
 another problem ("refund not received **and** support doesn't reply"). Label that example
@@ -28,9 +33,11 @@ another problem ("refund not received **and** support doesn't reply"). Label tha
 
 **Special labels** (not pain-point themes, but needed for some items):
 - `no complaint` — praise or neutral (common in 4–5★ items).
-- `other` — a real complaint that fits none of the above (e.g. notification spam,
-  feature requests like dark mode). Describe it in `notes`. If several `other` items share
-  a topic, that's a candidate new theme.
+- `other` — a real complaint that fits none of the above. Put its **sub-type** in `notes`:
+  `range` (products/styles not stocked), `rewards` (MyCash, spin-and-win, points),
+  `listing accuracy` (AI or misleading product photos), `trust (vague)` (fraud claim with
+  no specifics), or a new short tag. If several `other` items share a sub-type, that's a
+  candidate new theme.
 
 ## Other columns
 
