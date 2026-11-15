@@ -1,0 +1,4 @@
+# Never convert line endings in data files: review text must stay byte-for-byte exact
+# (some reviews contain line breaks inside the text).
+*.csv   -text
+*.jsonl -text
