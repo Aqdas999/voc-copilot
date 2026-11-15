@@ -16,3 +16,6 @@ Thumbs.db
 
 # Streamlit local config
 .streamlit/secrets.toml
+
+# LLM response cache (rebuildable; extraction outputs themselves are committed)
+data/processed/cache/
