@@ -12,7 +12,7 @@ original feedback — never paraphrased or invented.
 ## Pipeline
 
 ```
-ingest (Play Store, Reddit, synthetic) -> clean -> extract (LLM) -> cluster -> insights -> Streamlit app
+ingest (Play Store, synthetic, Reddit-optional) -> clean -> extract (LLM) -> cluster -> insights -> Streamlit app
                                                         \-> evals (citation validity, quote fidelity, churn P/R)
 ```
 
@@ -24,6 +24,19 @@ ingest (Play Store, Reddit, synthetic) -> clean -> extract (LLM) -> cluster -> i
 | Cluster | `src/cluster.py` | themes with counts + trends |
 | Insights | `src/insights.py` | quotes + RICE roadmap |
 | Evaluate | `evals/run_evals.py` | `evals/results/<prompt_version>.json` |
+
+### Data sources
+
+| Source | Script | Items | Status |
+|--------|--------|-------|--------|
+| Play Store (India) | `scrape_playstore.py` | 2,000 (1,600 newest English + 400 Hindi-tagged, last 12 months) | ✅ collected |
+| Synthetic support tickets | `synthetic_tickets.py` | 20 hand-written, labeled `SYN-` | ✅ generated |
+| Reddit | `scrape_reddit.py` | ~150 target | ⏸️ skipped for now |
+
+**Why Reddit is skipped:** Reddit blocks logged-out scripts from its public JSON endpoints
+(HTTP 403, tested Nov 2026), and the official API needs an approved app key. The PRAW-based
+scraper is ready; add `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` to `.env` to enable it.
+The rest of the pipeline works without it.
 
 ## LLM providers (zero budget)
 
