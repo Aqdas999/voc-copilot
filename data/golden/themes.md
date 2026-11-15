@@ -53,7 +53,7 @@ Amazon/Flipkart", "telling everyone not to use it". Plain anger alone is `N`.
 **`notes`** — anything useful: secondary theme, why an item was hard to label, mismatched
 rating (e.g. 5★ with a complaint).
 
-**`verified`** — put `yes` once you've finished and double-checked that row.
+**`verified`** — put `Y` once you've finished and double-checked that row.
 
 **`ai_confidence` / `ai_reason`** — added by the AI pre-labeling pass. `low` means check
 this row carefully: two competing problems, Hinglish/Hindi, vague text, unclear churn
