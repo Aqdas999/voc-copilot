@@ -34,9 +34,9 @@ another problem ("refund not received **and** support doesn't reply"). Label tha
 
 ## Other columns
 
-**`churn_signal`** — `yes` / `no`. `yes` only if the customer says or clearly implies they
+**`churn_signal`** — `Y` / `N`. `Y` only if the customer says or clearly implies they
 will stop using Myntra or switch: "uninstalling", "never ordering again", "going back to
-Amazon/Flipkart", "telling everyone not to use it". Plain anger alone is `no`.
+Amazon/Flipkart", "telling everyone not to use it". Plain anger alone is `N`.
 
 **`severity`** — 1 to 3:
 - `1` minor annoyance, no money or order lost (slow app, UI complaint, small delay)
@@ -47,6 +47,13 @@ Amazon/Flipkart", "telling everyone not to use it". Plain anger alone is `no`.
 rating (e.g. 5★ with a complaint).
 
 **`verified`** — put `yes` once you've finished and double-checked that row.
+
+**`ai_confidence` / `ai_reason`** — added by the AI pre-labeling pass. `low` means check
+this row carefully: two competing problems, Hinglish/Hindi, vague text, unclear churn
+intent, or no theme fits. The untouched AI draft is kept in `golden_set_ai_draft.csv`,
+so corrections can be counted by comparing the two files.
+
+**`severity`** is left blank for `no complaint` rows.
 
 ## Tips
 

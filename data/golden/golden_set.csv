@@ -1,19 +1,19 @@
-﻿id,source,language,rating,text,theme,churn_signal,severity,notes,verified
+﻿id,source,language,rating,text,theme,churn_signal,severity,ai_confidence,ai_reason,notes,verified
 AS-0015,appstore,en,1,"Worst delivery agents
 
-Still my order not received I’ve no other option rather than posting here I’ve emailed trying calling customer support",,,,,
+Still my order not received I’ve no other option rather than posting here I’ve emailed trying calling customer support",delivery delay,N,2,high,Order not received; support unreachable (secondary),,
 AS-0037,appstore,en,1,"Horrible customer service
 
-Just so horrible the executives are. No proper hold notice given on calls. They give fake promises incident is raised and give a fake number or the order number itself and they hung upon me so many times. When the next executive talks, he or she cannot find any details with the incident id previous person gave. They are very very rude and do not listen to your concern at all. Myntra has become the worst these days and never expected such horrible experience. Their employees must be trained and given proper process knowledge, empathy and know how to quickly respond using their resources. I’ve been on hold for more than 30 mins and they keep hanging upon me. When asked, they give this lamest bullcrap answer that they do not have an option to hang up calls. They think we are fools to believe such lies. Shut down Myntra if such worst experience is given to the customers.",,,,,
+Just so horrible the executives are. No proper hold notice given on calls. They give fake promises incident is raised and give a fake number or the order number itself and they hung upon me so many times. When the next executive talks, he or she cannot find any details with the incident id previous person gave. They are very very rude and do not listen to your concern at all. Myntra has become the worst these days and never expected such horrible experience. Their employees must be trained and given proper process knowledge, empathy and know how to quickly respond using their resources. I’ve been on hold for more than 30 mins and they keep hanging upon me. When asked, they give this lamest bullcrap answer that they do not have an option to hang up calls. They think we are fools to believe such lies. Shut down Myntra if such worst experience is given to the customers.",customer support,N,2,high,"Rude agents, hung-up calls, long holds; support is the whole complaint",,
 AS-0047,appstore,en,2,"Delayed help response
 
-They are not responsible if your product gets lost by their side or logistics. They simply say the product is with you and the team is sorry. Look for this scenario does not happens with you.",,,,,
+They are not responsible if your product gets lost by their side or logistics. They simply say the product is with you and the team is sorry. Look for this scenario does not happens with you.",delivery delay,N,3,low,Product lost in logistics but marked as with customer; vague wording,,
 AS-0048,appstore,en,1,"Don't buy from myntra no ownership and worst after sales service.
 
-They are wasting customer time and money and worst after sales service",,,,,
+They are wasting customer time and money and worst after sales service",customer support,Y,3,low,'Don't buy' = churn; 'after sales service' is vague (support or returns?),,
 AS-0055,appstore,en,1,"Service issues and return process is disappointing
 
-Product was planned to be picked and after week delay , agents cancels the return mentioning missing labels. Do they verify during delivery what is available in box.",,,,,
+Product was planned to be picked and after week delay , agents cancels the return mentioning missing labels. Do they verify during delivery what is available in box.",return/exchange failed,N,3,high,"Pickup delayed a week, then return cancelled for 'missing labels'",,
 AS-0073,appstore,en,2,"⭐ **1 Star – Extremely Poor Experience with Myntra!**
 
 I am extremely disappointed with Myntra's del
@@ -30,7 +30,7 @@ I want my order cancelled and my full refund processed immediately.
 
 Honestly, this experience has completely ruined my trust in Myntra. Customers spend their hard-earned money and expect timely delivery and basic support, not endless waiting and frustration.
 
-**I would not recommend Myntra to anyone. This is my last purchase from Myntra, and I will never shop here again.*",,,,,
+**I would not recommend Myntra to anyone. This is my last purchase from Myntra, and I will never shop here again.*",delivery delay,Y,3,high,Gift order undelivered past date; explicit 'last purchase... never shop here again',,
 AS-0098,appstore,en,1,"Extremely disappointing customer support experience
 
 I had an issue with a return pickup where the delivery agent incorrectly mapped two products against each other’s return requests. One refund was processed incorrectly, while the other refund of ₹983 remained pending.
@@ -47,130 +47,130 @@ A customer should not have to spend days explaining the same problem to differen
 
 Mistakes happen. But accountability and effective customer support should not be optional.
 
-Myntra seriously needs to improve its customer grievance redressal process.",,,,,
+Myntra seriously needs to improve its customer grievance redressal process.",refund delay,N,3,low,Two problems: return pickup mix-up left Rs 983 refund pending + support failures,,
 AS-0150,appstore,en,1,"Try to mock customers
 
 I bought 2 iteams from Myntra it’s not my first time I ordered so many products before but Myntra got worse I suggest every one not to buy products from Myntra 
 After the order done with prepaid they didn’t gave any updation like order id which was our delivery partner
 The product got automatically cancelled even though it reach our nearest hub 
-They change all their settings we didn’t have option to connect customer support",,,,,
+They change all their settings we didn’t have option to connect customer support",order cancelled,Y,3,high,Prepaid order auto-cancelled at hub; 'suggest everyone not to buy',,
 AS-0167,appstore,en,1,"Worst app
 
-Please guys don’t install this worst app because if we take any product if it was came after we want to put this return they never goo return dont install",,,,,
+Please guys don’t install this worst app because if we take any product if it was came after we want to put this return they never goo return dont install",return/exchange failed,Y,3,high,Returns never picked up; 'don't install',,
 AS-0232,appstore,en,5,"Watch
 
-Amazing watch, classic and sooooo good ! Must buy",,,,,
+Amazing watch, classic and sooooo good ! Must buy",no complaint,N,,high,Praise for a watch,,
 AS-0234,appstore,en,5,"pink long sleeve top
 
-love the fitting on me it’s so pretty and cute for basic styling",,,,,
+love the fitting on me it’s so pretty and cute for basic styling",no complaint,N,,high,Praise for fit of a top,,
 AS-0259,appstore,en,3,"Worst Delivery & Customer Support
 
 Very disappointing experience with Myntra. My delivery was delayed, and despite raising multiple complaints and requesting support, there was no proper resolution or callback.
 
 After all the frustration, I finally had to cancel the delayed order myself, and Myntra refunded ₹0. No proper explanation, no meaningful customer support, and no resolution.
 
-Extremely poor service and a frustrating experience. I would not recommend Myntra based on this experience.",,,,,
+Extremely poor service and a frustrating experience. I would not recommend Myntra based on this experience.",delivery delay,Y,3,low,Two problems: delayed order + refunded Rs 0 after cancelling; 'would not recommend',,
 AS-0278,appstore,en,1,"Pathetic customer service
 
-Myntra’s customer service sucks as it is now only managed by AI bots. My order from 24 October 2026 which was supposed to be delivered on 01 November 2026 has not delivered yet and till date they have no update on the product delivery. Every time the issue raised is met with either 24 hours deadline or 48 hours deadline. Now after 10 days of raising the issue their bot automatically rejects my chat conversation. Looks like Mynta thinks they are above everyone and the customer service is optional",,,,,
+Myntra’s customer service sucks as it is now only managed by AI bots. My order from 24 October 2026 which was supposed to be delivered on 01 November 2026 has not delivered yet and till date they have no update on the product delivery. Every time the issue raised is met with either 24 hours deadline or 48 hours deadline. Now after 10 days of raising the issue their bot automatically rejects my chat conversation. Looks like Mynta thinks they are above everyone and the customer service is optional",delivery delay,N,2,low,Two problems: order 2 weeks late + AI-bot support (title is about support),,
 AS-0324,appstore,en,1,"Too Much AI/False Advertising
 
-Stop with the AI videos and photos. If a brand cannot be bothered to take real photos and videos of the products, then why should we buy them? How do we even trust what the actual product is supposed to be like? Really pathetic",,,,,
+Stop with the AI videos and photos. If a brand cannot be bothered to take real photos and videos of the products, then why should we buy them? How do we even trust what the actual product is supposed to be like? Really pathetic",other,N,1,low,AI-generated product photos / false advertising; no theme fits,,
 AS-0345,appstore,en,5,"Very Good Shopping Experience
 
-Maverick",,,,,
+Maverick",no complaint,N,,high,Positive title,,
 AS-0356,appstore,en,5,"Beautiful and very sexy look
 
-Classy",,,,,
+Classy",no complaint,N,,high,Praise,,
 AS-0406,appstore,en,5,"Concealer
 
-Too good",,,,,
+Too good",no complaint,N,,high,Praise,,
 AS-0441,appstore,en,4,"Nice product
 
-Soft for the babies.",,,,,
+Soft for the babies.",no complaint,N,,high,Praise,,
 AS-0457,appstore,en,5,"My fav shopping site
 
-It’s been a play to shop in Myntra always",,,,,
+It’s been a play to shop in Myntra always",no complaint,N,,high,Praise,,
 AS-0489,appstore,en,5,"Best shopping platform.
 
-Myntra gives me the freedom to shop from all the brands available from the comfort of my home without having to go out and waste time moving here and there. Also the prices are very reasonable and affordable.",,,,,
-PS-0013,playstore,hinglish,1,Shipping timing bhut hi ghatiya hai kabhi bhi time pe nahi karte hai jo date pr order dhikhaya jata hai us date pr order kabhi nahi aata,,,,,
-PS-0096,playstore,en,1,This is happening for the third time I paid online for an order then I cancelled the order due to delayed delivery but my refund has not been initiated yet. I'm an old customer and it still happens to me. Very disappointing this is. i haven't got any refund. I'm receiving messages that I have got a refund but it has not been initiated. I'm going to delete this app And make sure I will never shop in the future.,,,,,
-PS-0232,playstore,hi,1,"myntra वाले चीटर है, जब प्रोडक्ट आर्डर किया था, वह प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया, ना तो रिफंड किया और ना ही एक्सचेंज किया...... यह जनता को लूटने वाली ऐप है",,,,,
-PS-0314,playstore,en,1,why you removed spin and win option. it permanently remove or maybe came back in future.,,,,,
-PS-0319,playstore,en,1,"Very disappointing customer service and refund experience! I cancelled my Plum Niacinamide Toner order on 1 November 2026. Myntra shows the refund as successful, but I haven't received the claimed UPI refund or the ₹43 MyCash credit. I have been trying to contact customer care repeatedly without getting a proper resolution. Even after raising a formal grievance, I am still following up to get my own money back. PhonePe has also registered a support ticket to investigate the missing ref",,,,,
-PS-0350,playstore,en,1,"Extremely disappointing experience with Myntra. My order was supposed to be delivered on 3rd November, but it is still undelivered. I have raised complaints twice and contacted customer support multiple times, but all they do is ask me to wait another 24–48 hours. No proper response, no updates, and no resolution. Very poor customer service and completely unreliable delivery. Would not recommend!",,,,,
-PS-0353,playstore,en,1,"Worst experience on Myntra! The app falsely showed my paid order as 'delivered', though I never received it. Despite reporting via chat and email, no resolution came even days after the promised deadline. Agents kept stalling and finally said nothing can be done from their end. This shows complete apathy and a nexus toward customers. Frustrated by this poor service, I am finally escalating this to the Consumer Forum. Think twice before paying upfront here!",,,,,
-PS-0373,playstore,en,5,very good quality product dilivered myntra,,,,,
-PS-0387,playstore,en,1,worst service and there customer service just sucks. No resolution from them and they just cancel order without any information. we have to check through our app.,,,,,
-PS-0536,playstore,en,1,Myntra is going from good to worst shopping site. they shipped your product. & show on there website still not shipped. don't go the filpkart way.,,,,,
-PS-0602,playstore,en,1,ordered but never delivered and shows it is delivered on the app. Delivery person has blocked my phone number. I am trying to exchange my product but always it shows delivered but the product is lying with me only. Ekart logistics is the delivery. I am uninstall this app thank you so much have used this app for the past more than six years now so much disappointed. Good bye,,,,,
-PS-0618,playstore,en,1,Bad experience. The delivery guy has been taken extra amount than the total amount of order from us .,,,,,
-PS-0776,playstore,hinglish,1,very bad experience abhi product ka jaroorat hai lekin ye samay gujarne ke baad denge faltu customer service hai koi option hi nahi jahan aap apni baat bol sake bas ai msg repeat karta hai main to payment kar ke fas gayi ab kabhi yahan se koi shopping nahi karungi,,,,,
-PS-0857,playstore,en,1,very bad experience ordered a product and it was delayed for 2 weeks at first and after 14 to 15 days it got cancelled without any explanation and the cash is also not reversed.,,,,,
-PS-0908,playstore,hinglish,1,Myntra ka service bahut hi bakwas or kharab hai galat Saman delivered karti hai aur pickup mein bahut pareshani Hoti Hai Myntra bahut hi ghatiya aur bakwas company hai isliye koi bhi customer Mitra se purchase na Karen,,,,,
-PS-0927,playstore,en,1,worst customer facility,,,,,
-PS-1197,playstore,en,1,worst app ever Myntra is fraud they are just looting money. I know they will remove this comment also from playstore.,,,,,
-PS-1302,playstore,en,1,worst service i never seen not taking return and customer service very poor 3 days onwards I am raising complaint no one call me return call worst service and worst app don't buy items in this app if you buy u will suffer,,,,,
-PS-1354,playstore,en,5,go for this app,,,,,
-PS-1429,playstore,en,5,if u search Deep with ur patience u will definitely find awesome products with nice fabric in budget friendly I like the myntra,,,,,
-PS-1666,playstore,en,5,very good product backbag,,,,,
-PS-1677,playstore,hinglish,1,"fraud company hai, I ordered Tomhill luxury perfume instead they delivered phone cover and now they are not returning the wrong product and telling me that I have received the correct product",,,,,
-PS-1680,playstore,en,1,"my delayed for two days after this the not picking call ,it is so embarassing moment",,,,,
-PS-1684,playstore,hinglish,1,this app was service was not good very bad my refund but not clear inke delivery agent chor Jo return product Le jaate Hain aur Paisa bhi return nahin karta hai Myntra wale chor,,,,,
-PS-1772,playstore,en,1,Rong item received and so many times to call customer care not responding very bad experience 😞😞😞😞😞,,,,,
-PS-1806,playstore,en,5,lovely it's good quality.,,,,,
-PS-1870,playstore,en,1,"pathetic customer care service due to excessive AI usage, you won't even get a real person to connect if you try calling them",,,,,
-PS-1874,playstore,en,2,"I ordered a Sweatshirt for 3 times and all times it get cancelled without any delivery attempt, I had worst online shopping experience with Myntra out of all I used",,,,,
-PS-1971,playstore,en,1,Very Bad experience for purchase shirt...I have to buy Invictus shirt but delevared to wrong Brand Shirt..And Do Not collected my Cansel Order Request..they Hold me 10 days.And then Reply me The Time Is Over..How Sad.. This Is Bad Experience to Myntra With me,,,,,
-PS-1976,playstore,en,1,"worst app ever I didn't get my shoes which is ordered for diwali today even though it's almost 8 :30 pm in the night , they were supposed to come today morning",,,,,
-PS-2051,playstore,en,1,This is the worst app I have ever seen my all order are delayed now my all programs are over but still they didn't give my orders....worst app ever,,,,,
-PS-2222,playstore,en,1,"used to be a great app especially with browsing same color products n same brand products option under every single product, now its taken AWAY WORST app ever now they also removed total number of count scrolled above and i keep scrolling down to see same set of t-shirts this WASTE OF TIME YOU GUYS HAVE RUINED A WORKING APP",,,,,
-PS-2229,playstore,en,1,refund has not came till now,,,,,
-PS-2360,playstore,en,1,Very slow delivery and service experience. They do not deliver the order on the promised date . Also the pin to call the delivery agent is always incorrect. It was disgusting experience from myntra.,,,,,
-PS-2400,playstore,en,1,"Pathetic service from Myntra! My orders are still undelivered despite the promised delivery dates, with repeated delays and cancellations without delivery attempts. Customer support offers nothing but empty promises. Fake offers and discounts mean nothing if you can't fulfil orders. Warning to other customers: Think twice before ordering from Myntra. Don't fall for flashy offers and regret it later!",,,,,
-PS-2434,playstore,en,1,Worst Customer Service after AI,,,,,
-PS-2660,playstore,en,5,"> *Pros:* > - Looks very premium, colour combination is stylish > - Comfortable cushioning > - True to size (I wear 9, ordered 10 and it fits perfectly) > - Good grip on sole > *Cons:* None so far > Overall value for money at this price. Go for it!",,,,,
-PS-2753,playstore,en,1,"Worst experience w.r.t. return/exchange. stay away from Myntra if you are buying clothes. While they claim they offer returns and exchanges, their process will make sure you never succeed in returning!",,,,,
-PS-2821,playstore,en,1,"BUYCOTT🚫 ""Myntra"" . They are over charging for PLATFORM FEE 😔 and cash on delivery charges is high also...#worst app",,,,,
-PS-2840,playstore,en,1,"the worst customer care service among all online shopping platform. I ordered a pant and at the first day they told your order is undelivered and they messege a number of coustomer service and once I dialled it, It was wrong🤬🤬",,,,,
-PS-2867,playstore,en,1,I faced issues with the exchange and had a terrible experience..they purposely delayed the exchange and cancelled it ...and now both the exchange and return date window is closed,,,,,
-PS-2998,playstore,en,1,very poor experience. Delivery boys are really bad... mantra should have some standard,,,,,
-PS-3015,playstore,hinglish,2,4 din se my cash me better luck next time aa rahe hai point hi nahi de rahe fir se band kar diya myncash esa kyu,,,,,
-PS-3163,playstore,en,1,"add some regular fit shirts with good colours , always dull colours, not attractive and more slim fit shirts only available nowadays. add regular fit shirts and colour rich shirts. nowadays shirts are below average looks only. pls solve this and add good colours shirts and regular fit shirts. hope you solve this 😡",,,,,
-PS-3302,playstore,en,1,worst app to use,,,,,
-PS-3363,playstore,en,1,very bad experience from Myntra very bad customer support,,,,,
-PS-3515,playstore,en,1,pathetic shopping platform worst will recommend to use amazon and ajio service is very poor,,,,,
-PS-3516,playstore,en,5,same day delivery,,,,,
-PS-3769,playstore,en,1,"I used this app first time for order and it got cancelled without any reason or notification, on asking customer support they said due to unavoidable circumstances the order got cancelled",,,,,
-PS-3887,playstore,en,1,very bad always delay my order,,,,,
-PS-3910,playstore,en,4,good platform. thanks myntra. easy to shoping here.thnx,,,,,
-PS-3958,playstore,en,1,Had the worst kind of experience. First of all they deliver a wrong item and then the return got delayed multiple times even after contacting customer support. Ultimately the return got cancelled.,,,,,
-PS-4047,playstore,hinglish,3,this app is good product is also very good but return policy not good mujhe return karwaate time bhot intejaar karna padhta hai Even return policy hi khatam ho jaati he please ye problem solve karo me kitne dino se pareshan ho rahi hu,,,,,
-PS-4184,playstore,en,1,worst app i didn't even receive a single order the customer care service agent only tell to wait for 48 hours and just leave when you try to contact again,,,,,
-PS-4332,playstore,en,1,worst app and worst delivery service with lot off delay there is no proper customer service,,,,,
-PS-4389,playstore,en,1,"⭐ (1 STAR) Myntra is honestly the WORST shopping app I have ever used! Absolutely pathetic service and completely disappointing experience. I have faced the same issue TWICE. After returning my orders, Myntra cancelled the items but did not refund my money. How can a shopping platform be so irresponsible with customers' hard-earned money? This is nothing less than cheating customers. If you cannot provide proper refunds, then why should anyone trust your platform?",,,,,
-PS-4449,playstore,en,1,Selling fake products with Roadster name. Worst customer support experience.,,,,,
-PS-4532,playstore,en,1,"Poor Live chat support, keeps giving you same reason that representatives are busy solving other customers queries. I ordered a thing and it was to be delivered in 3 hours and they delayed it and because it was late night i tried rescheduling the order literally 15 times! and they kept giving me the same reason and and did not replied! In the end i had to cancel the order. And also ​Terrible transparency! Myntra sneaks in a non-refundable platform fee without clearly warning you at checkout.",,,,,
-PS-4553,playstore,en,1,wth very bad delivery experience i orderd a product 1 month ago no tracking system no update where the order is even if u don't have those products why u showing in ur product list And there is no Customer support from their feedback email nothing got working and finally m thinking of cancel the order Please give me my refund,,,,,
-PS-4603,playstore,en,1,"I was trying to use the 10% SBI Credit Card instant discount on my Myntra order of 4k. The offer is visible and my order meets the minimum spend requirement, but whenever I select or add my SBI credit card, I get the message ""SBI Credit Card Removed as other payment option selected."" I have tried adding the card again, but the issue persists. Please check why the offer is not being applied and help me resolve this payment issue.",,,,,
-PS-4608,playstore,en,1,"such a worst app it is! they are not accepting any of calls they have accused me for returning the wrong product and that ""wrong product"" is sent by them which did not look like the picture I would not recommend such careless accusing app to anyone.",,,,,
-PS-4656,playstore,hi,5,Bahut sundar रिफंड भी बहुत तेज़,,,,,
-PS-4727,playstore,hi,2,एप्लीकेशन का हिंदी में ना ट्रांसलेट होना और पेमेंट मॉड का सोना होना करंट लोकेशन अपडेट ना होना माय ईमेल आईडी ना होना अनेकों कमी और खराबी या है इसको बेहतर बनाने के लिए जल्द से जल्द काम करनाचाहिए,,,,,
-PS-4783,playstore,en,5,"Very good, recommended.",,,,,
-PS-4899,playstore,hi,1,ये app instoll mat करना गेम के प्रोडक्ट लिए isme nahi ff our pubg se game के लिए ना इसमें से फिंगर स्लीव्स है ही नही ऑर्डर करने के लिए या गेम की बोर्ड वगैरा,,,,,
-SYN-0001,synthetic_ticket,en,,I ordered via M-Now because the app promised delivery in 30 minutes. It has been over 2 hours and the tracking still says 'packing'. I needed this shirt for an event tonight. What is the point of M-Now if it is slower than normal delivery?,,,,,
-SYN-0002,synthetic_ticket,en,,"I received a completely different product. I ordered a black hoodie and got a beige sweatshirt from another brand. The return request says 'item mismatch, under review'.",,,,,
-SYN-0003,synthetic_ticket,en,,My return was picked up on 28 October but the refund is still showing 'initiated'. It has been more than two weeks. Every time I contact support I get the same copy-paste reply asking me to wait 5-7 days.,,,,,
-SYN-0004,synthetic_ticket,en,,The app crashes every time I open the Returns section after the latest update. I can't raise a return for an item and the return window closes in 2 days.,,,,,
-SYN-0005,synthetic_ticket,hinglish,,"M-Now pe order kiya tha, 30 min bola tha but 1.5 ghante ho gaye. Delivery partner ka location 40 min se same jagah pe hai. Ab cancel bhi nahi ho raha. Bahut bekar experience.",,,,,
-SYN-0006,synthetic_ticket,en,,"Ordered size M jeans as per the size chart, but the waist is clearly smaller than the chart says. This is the second brand on Myntra where the size chart doesn't match the product.",,,,,
-SYN-0009,synthetic_ticket,hinglish,,"Payment ho gaya, paisa account se kat gaya, but app mein order dikh hi nahi raha. Order history khali hai. Please check karo, dobara order karne se darr lag raha hai.",,,,,
-SYN-0010,synthetic_ticket,hinglish,,"Size chart ke hisaab se L liya tha but shirt bahut tight hai, M jaisa lag raha hai. Exchange ke liye bola to bol rahe hain size available nahi hai. Ab sirf return ka option hai.",,,,,
-SYN-0012,synthetic_ticket,en,,"I chose refund to the original payment method (credit card), but the refund went to Myntra credit instead. I never asked for that. Please reverse it and send the money to my card.",,,,,
-SYN-0014,synthetic_ticket,en,,Package arrived with only one item instead of two. The invoice lists both. Support asked me for an unboxing video which I didn't record. I think that's unfair to expect from customers.,,,,,
-SYN-0016,synthetic_ticket,en,,"The 'Fits true to size' tag on this kurta is misleading. Most reviews say it runs small, and mine did too. Please fix the fit info, I have returned 3 items this month because of size.",,,,,
-SYN-0017,synthetic_ticket,en,,Size filter doesn't work properly. I select size 32 and the results still show items that are out of stock in 32. Wasting a lot of time scrolling.,,,,,
-SYN-0018,synthetic_ticket,en,,Refund amount is less than what I paid. I was charged a convenience fee and it was not refunded when I returned the item. Nobody explained this before I placed the order.,,,,,
-SYN-0019,synthetic_ticket,en,,The watch I received looks used: scratches on the glass and the box was already opened. For a product listed as new this is unacceptable.,,,,,
-SYN-0020,synthetic_ticket,hinglish,,"Shoes ka size UK 9 order kiya, jo aaya wo bilkul chhota hai. Har brand ka size alag hai, koi proper size guide nahi hai. Return karna pada, time waste.",,,,,
+Myntra gives me the freedom to shop from all the brands available from the comfort of my home without having to go out and waste time moving here and there. Also the prices are very reasonable and affordable.",no complaint,N,,high,Praise for range and prices,,
+PS-0013,playstore,hinglish,1,Shipping timing bhut hi ghatiya hai kabhi bhi time pe nahi karte hai jo date pr order dhikhaya jata hai us date pr order kabhi nahi aata,delivery delay,N,2,low,Hinglish: orders never arrive on the shown date,,
+PS-0096,playstore,en,1,This is happening for the third time I paid online for an order then I cancelled the order due to delayed delivery but my refund has not been initiated yet. I'm an old customer and it still happens to me. Very disappointing this is. i haven't got any refund. I'm receiving messages that I have got a refund but it has not been initiated. I'm going to delete this app And make sure I will never shop in the future.,refund delay,Y,3,high,Refund not initiated after cancelling (3rd time); 'delete this app... never shop',,
+PS-0232,playstore,hi,1,"myntra वाले चीटर है, जब प्रोडक्ट आर्डर किया था, वह प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया, ना तो रिफंड किया और ना ही एक्सचेंज किया...... यह जनता को लूटने वाली ऐप है",wrong/damaged item,N,3,low,"Hindi + several problems: ordered item not sent, return/refund/exchange refused, 'cheater'",,
+PS-0314,playstore,en,1,why you removed spin and win option. it permanently remove or maybe came back in future.,other,N,1,low,Asks why 'spin and win' was removed; no theme fits,,
+PS-0319,playstore,en,1,"Very disappointing customer service and refund experience! I cancelled my Plum Niacinamide Toner order on 1 November 2026. Myntra shows the refund as successful, but I haven't received the claimed UPI refund or the ₹43 MyCash credit. I have been trying to contact customer care repeatedly without getting a proper resolution. Even after raising a formal grievance, I am still following up to get my own money back. PhonePe has also registered a support ticket to investigate the missing ref",refund delay,N,3,high,Refund shown successful but UPI + MyCash never received,,
+PS-0350,playstore,en,1,"Extremely disappointing experience with Myntra. My order was supposed to be delivered on 3rd November, but it is still undelivered. I have raised complaints twice and contacted customer support multiple times, but all they do is ask me to wait another 24–48 hours. No proper response, no updates, and no resolution. Very poor customer service and completely unreliable delivery. Would not recommend!",delivery delay,Y,3,low,Undelivered since 3 Nov; 'would not recommend' = unclear churn,,
+PS-0353,playstore,en,1,"Worst experience on Myntra! The app falsely showed my paid order as 'delivered', though I never received it. Despite reporting via chat and email, no resolution came even days after the promised deadline. Agents kept stalling and finally said nothing can be done from their end. This shows complete apathy and a nexus toward customers. Frustrated by this poor service, I am finally escalating this to the Consumer Forum. Think twice before paying upfront here!",delivery delay,N,3,low,"Paid order marked delivered, never received; 'think twice' = unclear churn",,
+PS-0373,playstore,en,5,very good quality product dilivered myntra,no complaint,N,,high,Praise,,
+PS-0387,playstore,en,1,worst service and there customer service just sucks. No resolution from them and they just cancel order without any information. we have to check through our app.,order cancelled,N,2,high,Orders cancelled without information; support secondary,,
+PS-0536,playstore,en,1,Myntra is going from good to worst shopping site. they shipped your product. & show on there website still not shipped. don't go the filpkart way.,delivery delay,N,1,low,Tracking shows 'not shipped' after shipping; could be app bug instead,,
+PS-0602,playstore,en,1,ordered but never delivered and shows it is delivered on the app. Delivery person has blocked my phone number. I am trying to exchange my product but always it shows delivered but the product is lying with me only. Ekart logistics is the delivery. I am uninstall this app thank you so much have used this app for the past more than six years now so much disappointed. Good bye,return/exchange failed,Y,3,low,"Confusing: exchange item never picked up, shown as delivered; 'uninstall... good bye'",,
+PS-0618,playstore,en,1,Bad experience. The delivery guy has been taken extra amount than the total amount of order from us .,other,N,3,low,Delivery agent collected more cash than order total; maybe pricing/fees,,
+PS-0776,playstore,hinglish,1,very bad experience abhi product ka jaroorat hai lekin ye samay gujarne ke baad denge faltu customer service hai koi option hi nahi jahan aap apni baat bol sake bas ai msg repeat karta hai main to payment kar ke fas gayi ab kabhi yahan se koi shopping nahi karungi,delivery delay,Y,3,low,Hinglish: late order + AI-only support; 'kabhi yahan se shopping nahi karungi',,
+PS-0857,playstore,en,1,very bad experience ordered a product and it was delayed for 2 weeks at first and after 14 to 15 days it got cancelled without any explanation and the cash is also not reversed.,order cancelled,N,3,low,"Three problems: 2-week delay, then cancelled, money not reversed",,
+PS-0908,playstore,hinglish,1,Myntra ka service bahut hi bakwas or kharab hai galat Saman delivered karti hai aur pickup mein bahut pareshani Hoti Hai Myntra bahut hi ghatiya aur bakwas company hai isliye koi bhi customer Mitra se purchase na Karen,wrong/damaged item,Y,3,low,Hinglish: wrong items + pickup trouble; tells others not to buy,,
+PS-0927,playstore,en,1,worst customer facility,customer support,N,1,low,"One line, 'customer facility' is vague",,
+PS-1197,playstore,en,1,worst app ever Myntra is fraud they are just looting money. I know they will remove this comment also from playstore.,other,N,3,low,"General 'fraud/looting' accusation, no specifics",,
+PS-1302,playstore,en,1,worst service i never seen not taking return and customer service very poor 3 days onwards I am raising complaint no one call me return call worst service and worst app don't buy items in this app if you buy u will suffer,return/exchange failed,Y,3,high,"Return not accepted, no callback for 3 days; 'don't buy items in this app'",,
+PS-1354,playstore,en,5,go for this app,no complaint,N,,high,Recommends the app,,
+PS-1429,playstore,en,5,if u search Deep with ur patience u will definitely find awesome products with nice fabric in budget friendly I like the myntra,no complaint,N,,high,Praise for finds and fabric,,
+PS-1666,playstore,en,5,very good product backbag,no complaint,N,,high,Praise,,
+PS-1677,playstore,hinglish,1,"fraud company hai, I ordered Tomhill luxury perfume instead they delivered phone cover and now they are not returning the wrong product and telling me that I have received the correct product",wrong/damaged item,N,3,low,"Hinglish: perfume ordered, phone cover delivered, return refused",,
+PS-1680,playstore,en,1,"my delayed for two days after this the not picking call ,it is so embarassing moment",delivery delay,N,2,low,"Broken English: 2-day delay, then calls not picked up",,
+PS-1684,playstore,hinglish,1,this app was service was not good very bad my refund but not clear inke delivery agent chor Jo return product Le jaate Hain aur Paisa bhi return nahin karta hai Myntra wale chor,refund delay,N,3,low,"Hinglish: returned item taken but money not refunded, 'chor'",,
+PS-1772,playstore,en,1,Rong item received and so many times to call customer care not responding very bad experience 😞😞😞😞😞,wrong/damaged item,N,2,high,Wrong item received; support not responding (secondary),,
+PS-1806,playstore,en,5,lovely it's good quality.,no complaint,N,,high,Praise for quality,,
+PS-1870,playstore,en,1,"pathetic customer care service due to excessive AI usage, you won't even get a real person to connect if you try calling them",customer support,N,2,high,Can't reach a real person due to AI support,,
+PS-1874,playstore,en,2,"I ordered a Sweatshirt for 3 times and all times it get cancelled without any delivery attempt, I had worst online shopping experience with Myntra out of all I used",order cancelled,N,3,high,Same order cancelled 3 times without delivery attempt,,
+PS-1971,playstore,en,1,Very Bad experience for purchase shirt...I have to buy Invictus shirt but delevared to wrong Brand Shirt..And Do Not collected my Cansel Order Request..they Hold me 10 days.And then Reply me The Time Is Over..How Sad.. This Is Bad Experience to Myntra With me,wrong/damaged item,N,3,low,Two problems: wrong brand delivered + return held 10 days then window closed,,
+PS-1976,playstore,en,1,"worst app ever I didn't get my shoes which is ordered for diwali today even though it's almost 8 :30 pm in the night , they were supposed to come today morning",delivery delay,N,2,high,Diwali shoes not delivered on promised day,,
+PS-2051,playstore,en,1,This is the worst app I have ever seen my all order are delayed now my all programs are over but still they didn't give my orders....worst app ever,delivery delay,N,3,high,"All orders delayed, events missed (repeated)",,
+PS-2222,playstore,en,1,"used to be a great app especially with browsing same color products n same brand products option under every single product, now its taken AWAY WORST app ever now they also removed total number of count scrolled above and i keep scrolling down to see same set of t-shirts this WASTE OF TIME YOU GUYS HAVE RUINED A WORKING APP",app bugs/payments,N,1,low,UX regression: similar-products and count features removed; not a bug as such,,
+PS-2229,playstore,en,1,refund has not came till now,refund delay,N,3,high,Refund not received,,
+PS-2360,playstore,en,1,Very slow delivery and service experience. They do not deliver the order on the promised date . Also the pin to call the delivery agent is always incorrect. It was disgusting experience from myntra.,delivery delay,N,2,high,Missed promised dates; agent call PIN wrong,,
+PS-2400,playstore,en,1,"Pathetic service from Myntra! My orders are still undelivered despite the promised delivery dates, with repeated delays and cancellations without delivery attempts. Customer support offers nothing but empty promises. Fake offers and discounts mean nothing if you can't fulfil orders. Warning to other customers: Think twice before ordering from Myntra. Don't fall for flashy offers and regret it later!",delivery delay,Y,3,low,Two problems: repeated delays + cancellations; 'think twice before ordering',,
+PS-2434,playstore,en,1,Worst Customer Service after AI,customer support,N,1,high,Support worse since AI; one line,,
+PS-2660,playstore,en,5,"> *Pros:* > - Looks very premium, colour combination is stylish > - Comfortable cushioning > - True to size (I wear 9, ordered 10 and it fits perfectly) > - Good grip on sole > *Cons:* None so far > Overall value for money at this price. Go for it!",no complaint,N,,high,Detailed praise for shoes,,
+PS-2753,playstore,en,1,"Worst experience w.r.t. return/exchange. stay away from Myntra if you are buying clothes. While they claim they offer returns and exchanges, their process will make sure you never succeed in returning!",return/exchange failed,Y,3,high,Returns/exchanges designed to fail; 'stay away from Myntra',,
+PS-2821,playstore,en,1,"BUYCOTT🚫 ""Myntra"" . They are over charging for PLATFORM FEE 😔 and cash on delivery charges is high also...#worst app",pricing/fees,Y,3,high,Platform fee and COD charges too high; 'BUYCOTT',,
+PS-2840,playstore,en,1,"the worst customer care service among all online shopping platform. I ordered a pant and at the first day they told your order is undelivered and they messege a number of coustomer service and once I dialled it, It was wrong🤬🤬",customer support,N,2,low,Two problems: wrong support number + undelivered order,,
+PS-2867,playstore,en,1,I faced issues with the exchange and had a terrible experience..they purposely delayed the exchange and cancelled it ...and now both the exchange and return date window is closed,return/exchange failed,N,3,high,Exchange delayed then cancelled; return window now closed,,
+PS-2998,playstore,en,1,very poor experience. Delivery boys are really bad... mantra should have some standard,other,N,1,low,Delivery agents' behaviour; no theme fits,,
+PS-3015,playstore,hinglish,2,4 din se my cash me better luck next time aa rahe hai point hi nahi de rahe fir se band kar diya myncash esa kyu,other,N,1,low,Hinglish: MyCash rewards game gives no points,,
+PS-3163,playstore,en,1,"add some regular fit shirts with good colours , always dull colours, not attractive and more slim fit shirts only available nowadays. add regular fit shirts and colour rich shirts. nowadays shirts are below average looks only. pls solve this and add good colours shirts and regular fit shirts. hope you solve this 😡",other,N,1,low,"Assortment request: more regular-fit, colourful shirts",,
+PS-3302,playstore,en,1,worst app to use,app bugs/payments,N,1,low,"'worst app to use', no detail",,
+PS-3363,playstore,en,1,very bad experience from Myntra very bad customer support,customer support,N,1,high,"Very bad customer support, one line",,
+PS-3515,playstore,en,1,pathetic shopping platform worst will recommend to use amazon and ajio service is very poor,customer support,Y,3,low,Recommends Amazon/Ajio (churn); 'service' is vague,,
+PS-3516,playstore,en,5,same day delivery,no complaint,N,,high,Praise for same-day delivery,,
+PS-3769,playstore,en,1,"I used this app first time for order and it got cancelled without any reason or notification, on asking customer support they said due to unavoidable circumstances the order got cancelled",order cancelled,N,2,high,First order cancelled without reason,,
+PS-3887,playstore,en,1,very bad always delay my order,delivery delay,N,3,high,'always delay my order' (repeated),,
+PS-3910,playstore,en,4,good platform. thanks myntra. easy to shoping here.thnx,no complaint,N,,high,Praise,,
+PS-3958,playstore,en,1,Had the worst kind of experience. First of all they deliver a wrong item and then the return got delayed multiple times even after contacting customer support. Ultimately the return got cancelled.,wrong/damaged item,N,3,low,"Two problems: wrong item, then return delayed and cancelled",,
+PS-4047,playstore,hinglish,3,this app is good product is also very good but return policy not good mujhe return karwaate time bhot intejaar karna padhta hai Even return policy hi khatam ho jaati he please ye problem solve karo me kitne dino se pareshan ho rahi hu,return/exchange failed,N,2,low,"Hinglish: likes products, but returns slow and window expires",,
+PS-4184,playstore,en,1,worst app i didn't even receive a single order the customer care service agent only tell to wait for 48 hours and just leave when you try to contact again,delivery delay,N,2,high,No orders received; support only says wait 48h,,
+PS-4332,playstore,en,1,worst app and worst delivery service with lot off delay there is no proper customer service,delivery delay,N,2,high,Delivery delays; no support (secondary),,
+PS-4389,playstore,en,1,"⭐ (1 STAR) Myntra is honestly the WORST shopping app I have ever used! Absolutely pathetic service and completely disappointing experience. I have faced the same issue TWICE. After returning my orders, Myntra cancelled the items but did not refund my money. How can a shopping platform be so irresponsible with customers' hard-earned money? This is nothing less than cheating customers. If you cannot provide proper refunds, then why should anyone trust your platform?",refund delay,N,3,low,"Cancelled after return, no refund (twice); 'why should anyone trust' = unclear churn",,
+PS-4449,playstore,en,1,Selling fake products with Roadster name. Worst customer support experience.,fake/counterfeit,N,3,high,Fake 'Roadster' products; support bad (secondary),,
+PS-4532,playstore,en,1,"Poor Live chat support, keeps giving you same reason that representatives are busy solving other customers queries. I ordered a thing and it was to be delivered in 3 hours and they delayed it and because it was late night i tried rescheduling the order literally 15 times! and they kept giving me the same reason and and did not replied! In the end i had to cancel the order. And also ​Terrible transparency! Myntra sneaks in a non-refundable platform fee without clearly warning you at checkout.",M-Now late delivery,N,3,low,"3-hour delivery missed (probably M-Now), chat support, non-refundable platform fee",,
+PS-4553,playstore,en,1,wth very bad delivery experience i orderd a product 1 month ago no tracking system no update where the order is even if u don't have those products why u showing in ur product list And there is no Customer support from their feedback email nothing got working and finally m thinking of cancel the order Please give me my refund,delivery delay,N,3,high,"Ordered a month ago, no tracking, wants refund",,
+PS-4603,playstore,en,1,"I was trying to use the 10% SBI Credit Card instant discount on my Myntra order of 4k. The offer is visible and my order meets the minimum spend requirement, but whenever I select or add my SBI credit card, I get the message ""SBI Credit Card Removed as other payment option selected."" I have tried adding the card again, but the issue persists. Please check why the offer is not being applied and help me resolve this payment issue.",app bugs/payments,N,2,high,SBI card discount not applied at payment,,
+PS-4608,playstore,en,1,"such a worst app it is! they are not accepting any of calls they have accused me for returning the wrong product and that ""wrong product"" is sent by them which did not look like the picture I would not recommend such careless accusing app to anyone.",return/exchange failed,Y,3,low,Two problems: accused of returning wrong item they sent; 'would not recommend',,
+PS-4656,playstore,hi,5,Bahut sundar रिफंड भी बहुत तेज़,no complaint,N,,low,Hindi/Hinglish praise: refund was fast,,
+PS-4727,playstore,hi,2,एप्लीकेशन का हिंदी में ना ट्रांसलेट होना और पेमेंट मॉड का सोना होना करंट लोकेशन अपडेट ना होना माय ईमेल आईडी ना होना अनेकों कमी और खराबी या है इसको बेहतर बनाने के लिए जल्द से जल्द काम करनाचाहिए,app bugs/payments,N,1,low,"Hindi: no Hindi UI, location not updating, payment modes; list of app flaws",,
+PS-4783,playstore,en,5,"Very good, recommended.",no complaint,N,,high,"Praise, recommends",,
+PS-4899,playstore,hi,1,ये app instoll mat करना गेम के प्रोडक्ट लिए isme nahi ff our pubg se game के लिए ना इसमें से फिंगर स्लीव्स है ही नही ऑर्डर करने के लिए या गेम की बोर्ड वगैरा,other,Y,3,low,Hindi: no gaming accessories sold; 'install mat karna' (don't install),,
+SYN-0001,synthetic_ticket,en,,I ordered via M-Now because the app promised delivery in 30 minutes. It has been over 2 hours and the tracking still says 'packing'. I needed this shirt for an event tonight. What is the point of M-Now if it is slower than normal delivery?,M-Now late delivery,N,2,high,"M-Now 30-min promise, 2+ hours still 'packing'",,
+SYN-0002,synthetic_ticket,en,,"I received a completely different product. I ordered a black hoodie and got a beige sweatshirt from another brand. The return request says 'item mismatch, under review'.",wrong/damaged item,N,2,high,Different product and brand delivered,,
+SYN-0003,synthetic_ticket,en,,My return was picked up on 28 October but the refund is still showing 'initiated'. It has been more than two weeks. Every time I contact support I get the same copy-paste reply asking me to wait 5-7 days.,refund delay,N,3,high,Refund stuck 'initiated' 2+ weeks; scripted support (secondary),,
+SYN-0004,synthetic_ticket,en,,The app crashes every time I open the Returns section after the latest update. I can't raise a return for an item and the return window closes in 2 days.,app bugs/payments,N,2,high,App crashes in Returns section; return window closing,,
+SYN-0005,synthetic_ticket,hinglish,,"M-Now pe order kiya tha, 30 min bola tha but 1.5 ghante ho gaye. Delivery partner ka location 40 min se same jagah pe hai. Ab cancel bhi nahi ho raha. Bahut bekar experience.",M-Now late delivery,N,2,low,"Hinglish: M-Now 30 min became 1.5 hours, can't cancel",,
+SYN-0006,synthetic_ticket,en,,"Ordered size M jeans as per the size chart, but the waist is clearly smaller than the chart says. This is the second brand on Myntra where the size chart doesn't match the product.",size/fit mismatch,N,2,high,Size chart doesn't match product (second brand),,
+SYN-0009,synthetic_ticket,hinglish,,"Payment ho gaya, paisa account se kat gaya, but app mein order dikh hi nahi raha. Order history khali hai. Please check karo, dobara order karne se darr lag raha hai.",app bugs/payments,N,3,low,"Hinglish: money deducted, no order shown; 'scared to order again' = unclear churn",,
+SYN-0010,synthetic_ticket,hinglish,,"Size chart ke hisaab se L liya tha but shirt bahut tight hai, M jaisa lag raha hai. Exchange ke liye bola to bol rahe hain size available nahi hai. Ab sirf return ka option hai.",size/fit mismatch,N,2,low,Hinglish: L fits like M; exchange size unavailable,,
+SYN-0012,synthetic_ticket,en,,"I chose refund to the original payment method (credit card), but the refund went to Myntra credit instead. I never asked for that. Please reverse it and send the money to my card.",refund delay,N,2,high,Refund sent to Myntra credit instead of card,,
+SYN-0014,synthetic_ticket,en,,Package arrived with only one item instead of two. The invoice lists both. Support asked me for an unboxing video which I didn't record. I think that's unfair to expect from customers.,wrong/damaged item,N,3,high,One of two items missing; support wants unboxing video,,
+SYN-0016,synthetic_ticket,en,,"The 'Fits true to size' tag on this kurta is misleading. Most reviews say it runs small, and mine did too. Please fix the fit info, I have returned 3 items this month because of size.",size/fit mismatch,N,2,high,'True to size' tag misleading; 3 returns this month,,
+SYN-0017,synthetic_ticket,en,,Size filter doesn't work properly. I select size 32 and the results still show items that are out of stock in 32. Wasting a lot of time scrolling.,app bugs/payments,N,1,high,Size filter shows out-of-stock sizes,,
+SYN-0018,synthetic_ticket,en,,Refund amount is less than what I paid. I was charged a convenience fee and it was not refunded when I returned the item. Nobody explained this before I placed the order.,refund delay,N,3,low,Two themes: refund short because of convenience fee (refund vs pricing/fees),,
+SYN-0019,synthetic_ticket,en,,The watch I received looks used: scratches on the glass and the box was already opened. For a product listed as new this is unacceptable.,wrong/damaged item,N,2,high,"Item looks used, box opened",,
+SYN-0020,synthetic_ticket,hinglish,,"Shoes ka size UK 9 order kiya, jo aaya wo bilkul chhota hai. Har brand ka size alag hai, koi proper size guide nahi hai. Return karna pada, time waste.",size/fit mismatch,N,2,low,"Hinglish: UK 9 shoes too small, no size guide",,
