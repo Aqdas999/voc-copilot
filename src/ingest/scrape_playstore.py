@@ -3,7 +3,8 @@
 What it does:
   1. Fetches the newest reviews written in English and in Hindi, from India.
   2. Keeps every Hindi review from the last 12 months (capped at 400), then fills the
-     rest of the ~2,000 with the newest English reviews.
+     rest of the ~5,000 with the newest English reviews — stopping early if we reach
+     reviews older than 90 days (whichever comes first).
   3. Saves data/raw/playstore.csv in the project's unified schema.
 
 Why the Hindi window: English reviews arrive at ~2,000/week but Hindi ones are rare
@@ -26,7 +27,8 @@ from google_play_scraper import Sort, app, reviews
 
 APP_ID = "com.myntra.android"   # confirmed: "Myntra - Fashion Shopping App" by Myntra
 COUNTRY = "in"                  # India
-TARGET_TOTAL = 2000             # how many reviews to keep in the end
+TARGET_TOTAL = 5000             # how many reviews to keep in the end...
+ENGLISH_WINDOW_DAYS = 90        # ...or fewer, if English reviews older than 90 days are reached
 HINDI_WINDOW_DAYS = 365         # keep Hindi reviews from the last 12 months...
 HINDI_MAX = 400                 # ...but at most this many
 
@@ -81,12 +83,14 @@ def main() -> None:
     print(f"  kept {len(hindi)} Hindi reviews from the last {HINDI_WINDOW_DAYS} days")
     time.sleep(2)  # be polite to Google between requests
 
-    # 3. English: newest reviews, skipping any already in the Hindi set,
-    #    just enough to bring the total to TARGET_TOTAL.
+    # 3. English: newest reviews from the last 90 days, skipping any already in the
+    #    Hindi set, just enough to bring the total to TARGET_TOTAL.
     english = pd.DataFrame(to_rows(fetch_newest("en", TARGET_TOTAL), "en"))
     english = english[~english["review_id"].isin(hindi["review_id"])]
+    english = english[english["date"] >= datetime.now() - timedelta(days=ENGLISH_WINDOW_DAYS)]
     english = english.sort_values("date", ascending=False).head(TARGET_TOTAL - len(hindi))
-    print(f"  kept {len(english)} newest English reviews")
+    print(f"  kept {len(english)} newest English reviews "
+          f"({english['date'].min():%Y-%m-%d} to {english['date'].max():%Y-%m-%d})")
 
     # 4. Combine, newest first.
     df = pd.concat([english, hindi]).drop_duplicates(subset="review_id")

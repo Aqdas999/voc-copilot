@@ -12,7 +12,7 @@ original feedback — never paraphrased or invented.
 ## Pipeline
 
 ```
-ingest (Play Store, synthetic, Reddit-optional) -> clean -> extract (LLM) -> cluster -> insights -> Streamlit app
+ingest (Play Store, App Store, synthetic) -> clean -> extract (LLM) -> cluster -> insights -> Streamlit app
                                                         \-> evals (citation validity, quote fidelity, churn P/R)
 ```
 
@@ -27,16 +27,33 @@ ingest (Play Store, synthetic, Reddit-optional) -> clean -> extract (LLM) -> clu
 
 ### Data sources
 
-| Source | Script | Items | Status |
-|--------|--------|-------|--------|
-| Play Store (India) | `scrape_playstore.py` | 2,000 (1,600 newest English + 400 Hindi-tagged, last 12 months) | ✅ collected |
-| Synthetic support tickets | `synthetic_tickets.py` | 20 hand-written, labeled `SYN-` | ✅ generated |
-| Reddit | `scrape_reddit.py` | ~150 target | ⏸️ skipped for now |
+| Source | Script | Raw items | After cleaning | IDs |
+|--------|--------|-----------|----------------|-----|
+| Play Store (India) | `scrape_playstore.py` | 5,000 (4,600 newest English + 400 Hindi-tagged, last 12 months) | 2,599 | `PS-` |
+| App Store (India) | `scrape_appstore.py` | 500 (Apple's public RSS feed maximum) | 420 | `AS-` |
+| Synthetic support tickets | `synthetic_tickets.py` | 20 hand-written | 20 | `SYN-` |
+| Reddit | `scrape_reddit.py` | — | — | `RD-` (skipped) |
+| **Total** | | **5,520** | **3,039** | |
 
-**Why Reddit is skipped:** Reddit blocks logged-out scripts from its public JSON endpoints
-(HTTP 403, tested Nov 2026), and the official API needs an approved app key. The PRAW-based
-scraper is ready; add `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` to `.env` to enable it.
-The rest of the pipeline works without it.
+Snapshot collected 15 Nov 2026. Cleaning drops items under 3 words and duplicates.
+
+## Limitations
+
+- **No Reddit data.** Reddit blocks logged-out scripts from its public JSON endpoints
+  (reddit.com returns HTTP 403; old.reddit.com redirects to login — both retested Nov 2026),
+  and the official API needs an app key. The PRAW-based scraper is ready: add
+  `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` to `.env` to enable it.
+- **Short time window for English reviews.** Myntra gets ~400 English Play Store reviews a
+  day, so the newest 5,000 cover only ~2 weeks (2–14 Nov 2026); App Store covers ~1 week.
+  Trends are week-over-week at best. Hindi reviews span a year because they are rare.
+- **Not a representative sample of all users.** Short reviews ("good app") are mostly praise
+  and are dropped, so the cleaned set skews negative (Play Store mean 3.60 vs. Myntra's
+  public 4.59). Counts describe *what people complain about*, not overall satisfaction.
+- **App Store reviews have no per-review link.** Apple's feed gives none, so their `url`
+  points to the app's review page.
+- **Synthetic tickets are fake** (20, hand-written) and always labeled `synthetic_ticket`.
+- **Reviews can name individuals** (e.g. staff). Text is kept unmodified for quote fidelity;
+  names should be masked in anything displayed.
 
 ## LLM providers (zero budget)
 
