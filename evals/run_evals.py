@@ -16,6 +16,7 @@ Run:  python -m evals.run_evals --version v1
 """
 
 import argparse
+import hashlib
 import json
 import sys
 from datetime import date
@@ -92,6 +93,9 @@ def main() -> None:
         "severity_within_1_pct": pct(within1, int(has_sev.sum())),
         "severity_exact_pct": pct(exact, int(has_sev.sum())),
         "quote_fidelity_pct": pct(int(scored["quote_ok"].sum()), n),
+        # quotes the extract.py guard nulled out (they were not exact substrings)
+        "quotes_rejected_by_guard": int((scored.get("quote_valid") == False).sum())
+            if "quote_valid" in scored else None,
     }
 
     # --- Confusion list: rows where theme or churn disagree, worst first ---
@@ -115,6 +119,9 @@ def main() -> None:
         "prompt_version": args.version,
         "model": models,
         "run_date": date.today().isoformat(),
+        # fingerprint of the golden labels used, so scores from different label versions
+        # are never compared by accident
+        "golden_md5": hashlib.md5(GOLDEN_PATH.read_bytes()).hexdigest(),
         "n_golden": len(golden),
         "n_scored": n,
         "metrics": metrics,

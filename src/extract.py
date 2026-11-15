@@ -11,12 +11,14 @@ How it works:
   3. Send the rest in batches of ~20 to call_llm(), parse the JSON reply,
      retry a batch if the reply is broken or missing items.
   4. Append each good result to the cache, then write the output file.
+  5. Quote guard: any evidence_span that is not an exact substring of the original text
+     is set to null, so an invented or "fixed" quote can never reach the dashboard.
 
 The prompt is versioned (PROMPT_V1, PROMPT_V2...). Changing the prompt = new version,
 so cached results and eval scores are always tied to the exact prompt that made them.
 
 Run:
-  python -m src.extract --golden --version v1     # 100 golden items only
+  python -m src.extract --golden --version v2     # 100 golden items only
   python -m src.extract --version v1              # all items
 """
 
@@ -90,7 +92,64 @@ Items:
 {items_json}
 """
 
-PROMPTS = {"v1": PROMPT_V1}
+# V2 changes vs V1 (driven by v1 eval misses):
+#   - churn rule v2: leaving / telling others not to use / recommending a competitor
+#   - short angry reviews are complaints, never "no complaint"
+#   - two problems -> pick the root cause
+#   - stricter quote-copying rule
+# The examples are INVENTED. None are copied from the golden set: copying test items
+# into the prompt would inflate the eval score without making the model better.
+PROMPT_V2 = """You analyse customer feedback about Myntra, an Indian fashion shopping app.
+Feedback may be in English, Hindi, or Hinglish (Hindi written in English letters).
+
+For EACH item below, return one JSON object with these fields:
+- "id": copy the item's id exactly.
+- "pain_point": the main problem in under 12 words of plain English ("" if no complaint).
+- "theme": exactly ONE name from this list:
+{theme_list}
+- "sentiment": "positive", "neutral", "negative", or "mixed".
+- "severity": 1, 2 or 3 (null only if theme is "no complaint"):
+    1 = minor annoyance, no money or order lost
+    2 = real problem with an order (late delivery, wrong size, return hassle)
+    3 = money lost or stuck, repeated failures, fraud/fake claims, or churn_signal is "Y"
+- "churn_signal": "Y" or "N" (rules below).
+- "evidence_span": a quote from the text (rules below).
+
+THEME RULES
+- Two or more problems: pick the ROOT CAUSE, not the consequence.
+  "Refund not received and support was slow" -> "refund delay" (slow support is the consequence).
+  Only use "customer support" when support itself is the main problem.
+- Short angry reviews ARE complaints. Never label them "no complaint".
+  With no detail, use the theme the words point to: "useless app, total waste" ->
+  "app bugs/payments"; "service is the worst" -> "customer support"; "always late" -> "delivery delay".
+- "no complaint" is only for praise or neutral text with no problem at all.
+
+CHURN RULES
+"Y" only if the customer (a) says they will leave or stop using Myntra, OR (b) tells
+others not to use Myntra, OR (c) recommends a competitor.
+"N" for anger without intent to leave — including insults like "worst app" or "fraud",
+and "would not recommend" on its own.
+Examples (invented):
+  "Uninstalling today. Third refund stuck this month." -> Y (leaving)
+  "Friends, please don't order from here, you will lose your money." -> Y (tells others)
+  "Bas, ab Nykaa Fashion se hi lungi, yahan size kabhi sahi nahi aata." -> Y (competitor)
+  "Pathetic app, exchange took three weeks." -> N (anger only)
+  "Would not recommend. Delivery boy was rude." -> N ("would not recommend" alone)
+
+QUOTE RULES for evidence_span
+- Copy a phrase of 3-20 words CHARACTER BY CHARACTER from the item's text.
+- Keep typos, slang, capitals, emoji, Hindi script and Hinglish exactly as written:
+  if the text says "delevared", write "delevared", not "delivered".
+- No "..." or "…", no skipped words, no translation, no fixes, no line breaks.
+- One continuous piece of text that appears exactly in the original.
+
+Return ONLY a JSON array of {n} objects, one per item, no other text.
+
+Items:
+{items_json}
+"""
+
+PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V2}
 
 
 def build_prompt(version: str, batch: pd.DataFrame) -> str:
@@ -134,6 +193,24 @@ def normalise(record: dict) -> dict:
         "churn_signal": "Y" if churn == "Y" else "N",
         "evidence_span": record.get("evidence_span") or "",
     }
+
+
+def guard_quote(record: dict, original_text: str) -> dict:
+    """Core principle: no invented quotes. If evidence_span is not an EXACT substring of
+    the original text, set it to None (keeping the model's attempt for debugging).
+
+    Applied when writing output, so invalid quotes never reach the dashboard. The cache keeps
+    the model's raw answer, so we always know what the model actually said.
+    """
+    out = dict(record)
+    span = record.get("evidence_span")
+    if span and span in original_text:
+        out["quote_valid"] = True
+    else:
+        out["evidence_span"] = None
+        out["evidence_span_rejected"] = span or ""
+        out["quote_valid"] = False
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -209,8 +286,12 @@ def main() -> None:
         append_cache(args.version, records)       # saved immediately: a crash loses one batch at most
         cache.update({r["id"]: r for r in records})
 
-    # Write the output for exactly the requested ids, in feedback order.
-    results = [cache[i] for i in df["id"] if i in cache]
+    # Write the output for exactly the requested ids, in feedback order,
+    # with the quote guard applied (invalid evidence_span -> None).
+    texts = dict(zip(df["id"], df["text"]))
+    results = [guard_quote(cache[i], texts[i]) for i in df["id"] if i in cache]
+    rejected = sum(not r["quote_valid"] for r in results)
+    print(f"Quote guard: {rejected} evidence_span(s) were not exact substrings -> set to null")
     suffix = "_golden" if args.golden else ""
     out_path = OUTPUT_DIR / f"extractions_{args.version}{suffix}.jsonl"
     with out_path.open("w", encoding="utf-8") as f:

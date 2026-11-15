@@ -41,9 +41,14 @@ another problem ("refund not received **and** support doesn't reply"). Label tha
 
 ## Other columns
 
-**`churn_signal`** — `Y` / `N`. `Y` only if the customer says or clearly implies they
-will stop using Myntra or switch: "uninstalling", "never ordering again", "going back to
-Amazon/Flipkart", "telling everyone not to use it". Plain anger alone is `N`.
+**`churn_signal`** — `Y` / `N` (churn rule v2, 16 Nov 2026):
+- `Y` = the customer **states they will leave or stop using Myntra** ("uninstalling",
+  "never shopping here again"), **or tells others not to use Myntra** ("don't buy",
+  "stay away", "boycott"), **or recommends a competitor** ("use Amazon instead").
+- `N` = anger without intent to leave or a recommendation to others. "Worst app",
+  "fraud company", and **"would not recommend" on its own** are all `N`.
+
+Changes made when this rule replaced v1 are logged in `golden_relabel_log.csv`.
 
 **`severity`** — 1 to 3:
 - `1` minor annoyance, no money or order lost (slow app, UI complaint, small delay)
@@ -64,6 +69,11 @@ so corrections can be counted by comparing the two files.
 
 ## Tips
 
+- **Two problems → pick the root cause.** "Refund not received and support was slow" is
+  `refund delay`: the slow support is a consequence, not the cause.
+- **Short angry reviews are complaints, never `no complaint`.** With no detail, use the
+  theme the words point to: "worst app" → `app bugs/payments`, "worst service/support" →
+  `customer support`, "always late" → `delivery delay`.
 - Label from the **text**, not the star rating. 3★ reviews are sometimes very angry,
   and 5★ reviews sometimes contain a complaint.
 - Excel: if you edit in Excel, save as **CSV UTF-8** so Hindi text and emoji survive.

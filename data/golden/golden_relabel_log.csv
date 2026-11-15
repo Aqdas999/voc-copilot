@@ -1,0 +1,24 @@
+﻿date,rule,id,field,old,new,reason
+2026-11-16,churn rule v2,AS-0259,churn_signal,Y,N,'I would not recommend Myntra' alone
+2026-11-16,churn rule v2,PS-0350,churn_signal,Y,N,'Would not recommend!' alone
+2026-11-16,churn rule v2,PS-4608,churn_signal,Y,N,'would not recommend such... app to anyone' alone
+2026-11-16,churn rule v2,AS-0278,churn_signal,Y,N,anger at AI support; no intent to leave
+2026-11-16,churn rule v2,AS-0278,severity,3,2,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,AS-0324,churn_signal,Y,N,'why should we buy them?' is rhetorical
+2026-11-16,churn rule v2,AS-0324,severity,3,1,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-0232,churn_signal,Y,N,"Hindi: 'cheater... app that loots people' = accusation, not a warning to avoid"
+2026-11-16,churn rule v2,PS-0536,churn_signal,Y,N,"'don't go the flipkart way' is advice to Myntra, not a competitor recommendation"
+2026-11-16,churn rule v2,PS-0536,severity,3,1,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-1197,churn_signal,Y,N,"'fraud... looting money' = anger, no intent"
+2026-11-16,churn rule v2,PS-1677,churn_signal,Y,N,"'fraud company hai' = anger, no intent"
+2026-11-16,churn rule v2,PS-1684,churn_signal,Y,N,"Hinglish 'Myntra wale chor' = anger, no intent"
+2026-11-16,churn rule v2,PS-1874,churn_signal,Y,N,"'worst experience out of all I used' compares, doesn't say leaving"
+2026-11-16,churn rule v2,PS-2222,churn_signal,Y,N,"'RUINED A WORKING APP' = anger, no intent"
+2026-11-16,churn rule v2,PS-2222,severity,3,2,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-2998,churn_signal,Y,N,"'Delivery boys are really bad' = anger, no intent"
+2026-11-16,churn rule v2,PS-2998,severity,3,2,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-3302,churn_signal,Y,N,'worst app to use' = the rule's own example of N
+2026-11-16,churn rule v2,PS-3302,severity,3,1,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-4332,churn_signal,Y,N,"'worst app and worst delivery' = anger, no intent"
+2026-11-16,churn rule v2,PS-4332,severity,3,2,was 3 only because churn was Y; restored reviewer severity
+2026-11-16,churn rule v2,PS-4449,churn_signal,Y,N,"'Selling fake products' = accusation, no intent"

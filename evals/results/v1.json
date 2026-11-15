@@ -4,23 +4,25 @@
     "groq:openai/gpt-oss-120b"
   ],
   "run_date": "2026-11-16",
+  "golden_md5": "c2f0b54d86f20e707734330a7a18daa2",
   "n_golden": 100,
   "n_scored": 100,
   "metrics": {
     "coverage_pct": 100.0,
     "theme_agreement_pct": 87.0,
-    "churn_precision_pct": 90.0,
-    "churn_recall_pct": 30.0,
+    "churn_precision_pct": 60.0,
+    "churn_recall_pct": 42.9,
     "churn_counts": {
-      "tp": 9,
-      "fp": 1,
-      "fn": 21,
-      "gold_Y": 30,
+      "tp": 6,
+      "fp": 4,
+      "fn": 8,
+      "gold_Y": 14,
       "pred_Y": 10
     },
-    "severity_within_1_pct": 89.0,
-    "severity_exact_pct": 52.4,
-    "quote_fidelity_pct": 97.0
+    "severity_within_1_pct": 91.5,
+    "severity_exact_pct": 57.3,
+    "quote_fidelity_pct": 97.0,
+    "quotes_rejected_by_guard": 3
   },
   "theme_confusions": [
     {
@@ -120,21 +122,21 @@
       "text": "Worst app\n\nPlease guys don’t install this worst app because if we take any product if it was came after we want to put this return they never goo return dont install"
     },
     {
-      "id": "PS-3302",
+      "id": "PS-0232",
       "miss_score": 4,
       "gold": {
-        "theme": "app bugs/payments",
-        "churn": "Y",
+        "theme": "wrong/damaged item",
+        "churn": "N",
         "severity": "3"
       },
       "pred": {
-        "theme": "no complaint",
-        "churn": "N",
-        "severity": null
+        "theme": "order cancelled",
+        "churn": "Y",
+        "severity": 3
       },
-      "evidence_span": "worst app to use",
+      "evidence_span": "प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया",
       "quote_ok": true,
-      "text": "worst app to use"
+      "text": "myntra वाले चीटर है, जब प्रोडक्ट आर्डर किया था, वह प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया, ना तो रिफंड किया और ना ही एक्सचेंज किया...... यह जनता को लूटने वाली ऐप है"
     },
     {
       "id": "PS-3515",
@@ -152,57 +154,6 @@
       "evidence_span": "pathetic shopping platform worst will recommend to use amazon",
       "quote_ok": true,
       "text": "pathetic shopping platform worst will recommend to use amazon and ajio service is very poor"
-    },
-    {
-      "id": "PS-4608",
-      "miss_score": 4,
-      "gold": {
-        "theme": "return/exchange failed",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "wrong/damaged item",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "they have accused me for returning the wrong product and that \"wrong product\" is sent by them which did not look like the picture",
-      "quote_ok": true,
-      "text": "such a worst app it is! they are not accepting any of calls they have accused me for returning the wrong product and that \"wrong product\" is sent by them which did not look like the picture I would not recommend such careless accusing app to anyone."
-    },
-    {
-      "id": "AS-0324",
-      "miss_score": 3,
-      "gold": {
-        "theme": "other",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "other",
-        "churn": "N",
-        "severity": 1
-      },
-      "evidence_span": "Stop with the AI videos and photos",
-      "quote_ok": true,
-      "text": "Too Much AI/False Advertising\n\nStop with the AI videos and photos. If a brand cannot be bothered to take real photos and videos of the products, then why should we buy them? How do we even trust what the actual product is supposed to be like? Really pathetic"
-    },
-    {
-      "id": "PS-2222",
-      "miss_score": 3,
-      "gold": {
-        "theme": "app bugs/payments",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "app bugs/payments",
-        "churn": "N",
-        "severity": 1
-      },
-      "evidence_span": "now its taken AWAY WORST app ever now they also removed total number of count",
-      "quote_ok": true,
-      "text": "used to be a great app especially with browsing same color products n same brand products option under every single product, now its taken AWAY WORST app ever now they also removed total number of count scrolled above and i keep scrolling down to see same set of t-shirts this WASTE OF TIME YOU GUYS HAVE RUINED A WORKING APP"
     },
     {
       "id": "PS-2821",
@@ -273,72 +224,21 @@
       "text": "Try to mock customers\n\nI bought 2 iteams from Myntra it’s not my first time I ordered so many products before but Myntra got worse I suggest every one not to buy products from Myntra \nAfter the order done with prepaid they didn’t gave any updation like order id which was our delivery partner\nThe product got automatically cancelled even though it reach our nearest hub \nThey change all their settings we didn’t have option to connect customer support"
     },
     {
-      "id": "AS-0278",
+      "id": "AS-0259",
       "miss_score": 2,
       "gold": {
-        "theme": "delivery delay",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
         "theme": "delivery delay",
         "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "has not delivered yet",
-      "quote_ok": true,
-      "text": "Pathetic customer service\n\nMyntra’s customer service sucks as it is now only managed by AI bots. My order from 24 October 2026 which was supposed to be delivered on 01 November 2026 has not delivered yet and till date they have no update on the product delivery. Every time the issue raised is met with either 24 hours deadline or 48 hours deadline. Now after 10 days of raising the issue their bot automatically rejects my chat conversation. Looks like Mynta thinks they are above everyone and the customer service is optional"
-    },
-    {
-      "id": "PS-0232",
-      "miss_score": 2,
-      "gold": {
-        "theme": "wrong/damaged item",
-        "churn": "Y",
         "severity": "3"
       },
       "pred": {
-        "theme": "order cancelled",
+        "theme": "delivery delay",
         "churn": "Y",
         "severity": 3
       },
-      "evidence_span": "प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया",
+      "evidence_span": "My delivery was delayed",
       "quote_ok": true,
-      "text": "myntra वाले चीटर है, जब प्रोडक्ट आर्डर किया था, वह प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया, ना तो रिफंड किया और ना ही एक्सचेंज किया...... यह जनता को लूटने वाली ऐप है"
-    },
-    {
-      "id": "PS-0350",
-      "miss_score": 2,
-      "gold": {
-        "theme": "delivery delay",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "delivery delay",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "order was supposed to be delivered on 3rd November, but it is still undelivered",
-      "quote_ok": true,
-      "text": "Extremely disappointing experience with Myntra. My order was supposed to be delivered on 3rd November, but it is still undelivered. I have raised complaints twice and contacted customer support multiple times, but all they do is ask me to wait another 24–48 hours. No proper response, no updates, and no resolution. Very poor customer service and completely unreliable delivery. Would not recommend!"
-    },
-    {
-      "id": "PS-0536",
-      "miss_score": 2,
-      "gold": {
-        "theme": "delivery delay",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "delivery delay",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "they shipped your product. & show on there website still not shipped",
-      "quote_ok": true,
-      "text": "Myntra is going from good to worst shopping site. they shipped your product. & show on there website still not shipped. don't go the filpkart way."
+      "text": "Worst Delivery & Customer Support\n\nVery disappointing experience with Myntra. My delivery was delayed, and despite raising multiple complaints and requesting support, there was no proper resolution or callback.\n\nAfter all the frustration, I finally had to cancel the delayed order myself, and Myntra refunded ₹0. No proper explanation, no meaningful customer support, and no resolution.\n\nExtremely poor service and a frustrating experience. I would not recommend Myntra based on this experience."
     },
     {
       "id": "PS-0602",
@@ -392,6 +292,23 @@
       "text": "Myntra ka service bahut hi bakwas or kharab hai galat Saman delivered karti hai aur pickup mein bahut pareshani Hoti Hai Myntra bahut hi ghatiya aur bakwas company hai isliye koi bhi customer Mitra se purchase na Karen"
     },
     {
+      "id": "PS-1197",
+      "miss_score": 2,
+      "gold": {
+        "theme": "other",
+        "churn": "N",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "other",
+        "churn": "Y",
+        "severity": 3
+      },
+      "evidence_span": "Myntra is fraud they are just looting money",
+      "quote_ok": true,
+      "text": "worst app ever Myntra is fraud they are just looting money. I know they will remove this comment also from playstore."
+    },
+    {
       "id": "PS-1302",
       "miss_score": 2,
       "gold": {
@@ -409,108 +326,6 @@
       "text": "worst service i never seen not taking return and customer service very poor 3 days onwards I am raising complaint no one call me return call worst service and worst app don't buy items in this app if you buy u will suffer"
     },
     {
-      "id": "PS-1677",
-      "miss_score": 2,
-      "gold": {
-        "theme": "wrong/damaged item",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "wrong/damaged item",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "I ordered Tomhill luxury perfume instead they delivered phone cover and now they are not returning the wrong product",
-      "quote_ok": true,
-      "text": "fraud company hai, I ordered Tomhill luxury perfume instead they delivered phone cover and now they are not returning the wrong product and telling me that I have received the correct product"
-    },
-    {
-      "id": "PS-1684",
-      "miss_score": 2,
-      "gold": {
-        "theme": "refund delay",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "refund delay",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "my refund but not clear inke delivery agent chor Jo return product Le jaate Hain aur Paisa bhi return nahin karta hai Myntra wale chor",
-      "quote_ok": true,
-      "text": "this app was service was not good very bad my refund but not clear inke delivery agent chor Jo return product Le jaate Hain aur Paisa bhi return nahin karta hai Myntra wale chor"
-    },
-    {
-      "id": "PS-1874",
-      "miss_score": 2,
-      "gold": {
-        "theme": "order cancelled",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "order cancelled",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "I ordered a Sweatshirt for 3 times and all times it get cancelled without any delivery attempt",
-      "quote_ok": true,
-      "text": "I ordered a Sweatshirt for 3 times and all times it get cancelled without any delivery attempt, I had worst online shopping experience with Myntra out of all I used"
-    },
-    {
-      "id": "PS-2998",
-      "miss_score": 2,
-      "gold": {
-        "theme": "delivery agent behaviour",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "delivery agent behaviour",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "Delivery boys are really bad",
-      "quote_ok": true,
-      "text": "very poor experience. Delivery boys are really bad... mantra should have some standard"
-    },
-    {
-      "id": "PS-4332",
-      "miss_score": 2,
-      "gold": {
-        "theme": "delivery delay",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "delivery delay",
-        "churn": "N",
-        "severity": 2
-      },
-      "evidence_span": "lot off delay",
-      "quote_ok": true,
-      "text": "worst app and worst delivery service with lot off delay there is no proper customer service"
-    },
-    {
-      "id": "PS-4449",
-      "miss_score": 2,
-      "gold": {
-        "theme": "fake/counterfeit",
-        "churn": "Y",
-        "severity": "3"
-      },
-      "pred": {
-        "theme": "fake/counterfeit",
-        "churn": "N",
-        "severity": 3
-      },
-      "evidence_span": "Selling fake products with Roadster name",
-      "quote_ok": true,
-      "text": "Selling fake products with Roadster name. Worst customer support experience."
-    },
-    {
       "id": "PS-4532",
       "miss_score": 2,
       "gold": {
@@ -526,6 +341,23 @@
       "evidence_span": "Poor Live chat support, keeps giving you same reason",
       "quote_ok": true,
       "text": "Poor Live chat support, keeps giving you same reason that representatives are busy solving other customers queries. I ordered a thing and it was to be delivered in 3 hours and they delayed it and because it was late night i tried rescheduling the order literally 15 times! and they kept giving me the same reason and and did not replied! In the end i had to cancel the order. And also ​Terrible transparency! Myntra sneaks in a non-refundable platform fee without clearly warning you at checkout."
+    },
+    {
+      "id": "PS-4608",
+      "miss_score": 2,
+      "gold": {
+        "theme": "return/exchange failed",
+        "churn": "N",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "wrong/damaged item",
+        "churn": "N",
+        "severity": 2
+      },
+      "evidence_span": "they have accused me for returning the wrong product and that \"wrong product\" is sent by them which did not look like the picture",
+      "quote_ok": true,
+      "text": "such a worst app it is! they are not accepting any of calls they have accused me for returning the wrong product and that \"wrong product\" is sent by them which did not look like the picture I would not recommend such careless accusing app to anyone."
     },
     {
       "id": "PS-3015",
@@ -577,6 +409,23 @@
       "evidence_span": "worst customer facility",
       "quote_ok": true,
       "text": "worst customer facility"
+    },
+    {
+      "id": "PS-3302",
+      "miss_score": 2,
+      "gold": {
+        "theme": "app bugs/payments",
+        "churn": "N",
+        "severity": "1"
+      },
+      "pred": {
+        "theme": "no complaint",
+        "churn": "N",
+        "severity": null
+      },
+      "evidence_span": "worst app to use",
+      "quote_ok": true,
+      "text": "worst app to use"
     },
     {
       "id": "SYN-0017",
