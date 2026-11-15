@@ -8,8 +8,5 @@ python-dotenv>=1.0         # reads API keys from .env
 google-play-scraper>=1.2   # Play Store reviews
 praw>=7.7                  # Reddit API client
 
-# Cleaning
-langdetect>=1.0.9          # rough language detection (Hinglish handled by our own heuristic)
-
 # App
 streamlit>=1.35
