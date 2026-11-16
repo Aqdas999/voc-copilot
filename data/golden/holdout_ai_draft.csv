@@ -1,0 +1,43 @@
+﻿id,source,language,rating,text,theme,churn_signal,severity,ai_confidence,ai_reason,notes,verified
+AS-0064,appstore,en,3,"Pathetic experience
+
+I ordered something on 04oct and the delivery date was 12oct since that day to today I didn’t get any response about my package, even i tried to contact their sales support they don’t even bother to listen",delivery delay,N,2,high,"Ordered 4 Oct, not received; support ignores (secondary). 3-star but angry",,
+AS-0171,appstore,en,5,"Myntra Review
+
+Very nice app for shopping",no complaint,N,,high,Praise,,
+AS-0192,appstore,en,5,"Good product very comfortable
+
+Good product very comfortable",no complaint,N,,high,Praise,,
+AS-0214,appstore,en,1,"Poor response
+
+Ordered a bag, but not yet shipped till expected delivery date, also not giving proper response & not calling back expecting customer to keep checking status on app!",delivery delay,N,2,high,Bag not shipped by expected date; no callback (secondary),,
+AS-0220,appstore,en,1,"They charges too much without any reason and don’t refund after return
+
+Very disappointed how they are looting people by applying charges , 23 platform fee is too high and this is not enough they charges extra 15 for cod but when you want to return they will not pay the 38 rupees !!  It is the to looting the people !!😡😡😡",pricing/fees,N,3,low,"Two themes: platform + COD fees, and those fees not refunded on return (refund delay?)",,
+AS-0239,appstore,en,1,"Worse service experience i ever got
+
+I didn’t expected this kind of service from myntra it was my first order and i will never oder from this platform ever again.",customer support,Y,3,low,'will never oder from this platform ever again' = Y; 'worse service' too vague for a theme,,
+PS-0541,playstore,en,5,best platform for shopping must try plzz,no complaint,N,,high,Praise,,
+PS-0643,playstore,hinglish,1,froud myntra mene ek kurta pajama mangwaya wo dusre brand ka bhej diya ab sale return nahi kar rahe bahane bana rahe he froud he myntra worst experience,wrong/damaged item,N,3,low,"Hinglish: other brand sent (root cause), then return refused",,
+PS-0657,playstore,hi,3,"मुझे ऑफर या प्रोडक्ट suggestion नहीं चाहिये, मैने ऐसे सब नोटिफिकेशन बंद कर दिया है फिर भी message आता रहता है कृपय जल्दी ठीक करें",other,N,1,low,Hindi: keeps getting offer notifications after turning them off,notifications,
+PS-0720,playstore,hinglish,1,Myntra is very poor Myntra ki return policy bahut kharab hai agar Mera product return nahin hua To Main Myntra ko delete kar dungi aur kabhi bhi Myntra se shopping nahin karungi Abhi Tak Main Flipkart se shopping karti thi kabhi aisi shikayat nahin I Hai Myntra is very poor Maine Myntra se ek tshirt mangai Thi Apne bete ke liye jo ki use pasand nahin thi agar Mera product wapas ho jata to main dusri Le leti Naam bade Darshan chote aaj ke bad mein My,return/exchange failed,Y,3,low,Hinglish: conditional churn 'agar return nahin hua to delete kar dungi'; mentions Flipkart,,
+PS-0755,playstore,hinglish,1,Myntra fraud koi v use na kre customer ko bewkoof bnate h. Refund nhi krte or customer care ke name par customer ka dimag khate h or paise khate h customer ka😡😡😡😡😡,refund delay,Y,3,low,"Hinglish: 'koi v use na kre' = tells others; refund not given, support useless",,
+PS-0780,playstore,en,1,myntra such poor services,customer support,N,1,low,"'such poor services', no detail",,
+PS-1844,playstore,en,1,horrible experience and such an useless people on support who doesn't even want to hear users concern when they are sitting there for user related concerns and just keeping the call on hold for more than 30 mins just for 1 piece of information seriously worst experience,customer support,N,2,high,"Support won't listen, 30+ min hold",,
+PS-1997,playstore,en,1,"Extremely disappointing experience with Myntra now! I placed an order for a kurta with a promised delivery time of 2:00 PM, but the order was not delivered within the given time. If Myntra commits to a specific delivery time, customers should be able to rely on it. This kind of delay, without timely communication or proper updates, is completely unacceptable. Customers plan their schedules around the delivery commitments made by the company. Very poor service and a waste of time.",delivery delay,N,2,low,Missed promised 2 PM slot; could be M-Now (time-slot delivery),,
+PS-2092,playstore,en,1,can't get decorative stuffs which are trending also the fashion is quite dull example some oversized shirt or hoodie,other,N,1,high,Wants trending decor and less dull fashion,range,
+PS-2679,playstore,en,1,very worst app in the world very very very dirty app my shoes are not coming and cancelled by themselves poor app,order cancelled,N,2,high,'worst app' but real problem is shoes cancelled by Myntra (app rule),,
+PS-2897,playstore,en,1,no proper response from customer care...never ordering 30 minutes delivery bcz u cannot return or exchange when product is damaged or defective...no proper solution from customer care executive..,return/exchange failed,N,3,low,"Can't return damaged 30-min-delivery item; 'never ordering 30 minutes delivery' = leaving a feature, not Myntra",M-Now,
+PS-2936,playstore,en,1,useless aap it's a fraud app they have taken the money yesterday for an order still didn't not delivered it was 51 min delivery omg and no customer support it's none,M-Now late delivery,N,3,high,"'51 min delivery' paid, still not delivered; calls it fraud",,
+PS-3051,playstore,hinglish,1,isme kuch bhi mangao sab bakwaas hii aata hai sabse bekar hai yeh app,product quality,N,2,low,Hinglish: 'kuch bhi mangao sab bakwaas aata hai' = everything ordered is junk,,
+PS-3067,playstore,en,5,"A smooth online shopping experience, specially best for fashion brands of your choice.",no complaint,N,,high,Praise,,
+PS-3384,playstore,en,1,worst app 💔 never make deliveries on time,delivery delay,N,3,high,'worst app' but problem is deliveries never on time (repeated),,
+PS-3826,playstore,en,1,very very worst customer service support,customer support,N,1,high,"Worst customer support, one line",,
+PS-4140,playstore,en,5,"Best shopping app, quality always the best, Thank you Myntra",no complaint,N,,high,Praise,,
+PS-4314,playstore,en,1,"there seems to be a bug, app closes everytime whenever an item is shared on other platforms. when we return to the app, new session starts from homepage. It is frustrating. start search and apply filters from scratch. starts from the homepage even though the app runs in background",app bugs/payments,N,1,high,"App closes on share, restarts session, filters lost",,
+PS-4377,playstore,en,1,"The worst service I have ever had. I recently ordered a product, and the product I received is very low quality. Now they have denied my return, they are holding my return request, and they have not responded to my complaint. I suggest not to use this platform.",product quality,Y,3,low,Two problems: low quality (root) then return denied; 'I suggest not to use this platform' = Y,,
+PS-4423,playstore,en,1,"This online shopping app is very bad i think that it is a complete scam, my order was delivered and i have paid the delivery agent at the time of delivery, due to a size issue i wanted to exchange or return the item, but i am seeing in the app that the delivery status is still not updated as DELIVERED, lt is still showing status as DELIVERY FAILED, because of this i am stuck at here to get it exchanged or return, this is very bad experience from Myntra..",return/exchange failed,N,3,low,"Status stuck at 'delivery failed' after paying, so can't exchange; could be app bug or agent",,
+PS-4966,playstore,hi,1,अब इसकी जरूरत नहीं है,other,N,1,low,Hindi: 'no longer needed' — late order? or leaving the app? Too vague,too vague,
+SYN-0007,synthetic_ticket,hinglish,,"Return pickup ho gaya 12 din pehle, refund abhi tak bank mein nahi aaya. Customer care bolta hai process ho raha hai. Itna time kyun lagta hai? Next time se Myntra se order nahi karunga.",refund delay,Y,3,low,Hinglish: refund 12 days late; 'Next time se Myntra se order nahi karunga' = Y,,
+SYN-0011,synthetic_ticket,hinglish,,"Order mein blue colour tha, aaya green. Return pickup wale ne bola tag hata hua hai isliye nahi le sakte, jabki tag maine hataya hi nahi. Ab kya karun?",wrong/damaged item,N,3,low,"Hinglish: wrong colour (root), then return pickup refused over tag",,
+SYN-0013,synthetic_ticket,en,,Coupon shows as applied on the cart page but the discount disappears on the payment page. Tried three times. Ended up abandoning the cart.,app bugs/payments,N,2,high,Coupon drops off at payment page; cart abandoned,,

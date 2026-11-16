@@ -1,0 +1,208 @@
+{
+  "prompt_version": "v1",
+  "model": [
+    "groq:openai/gpt-oss-120b"
+  ],
+  "run_date": "2026-11-16",
+  "label_set": "holdout",
+  "golden_md5": "1b72c06bf81fa306f18ceecc61e5864c",
+  "n_golden": 30,
+  "n_scored": 30,
+  "metrics": {
+    "coverage_pct": 100.0,
+    "theme_agreement_pct": 73.3,
+    "churn_precision_pct": 100.0,
+    "churn_recall_pct": 100.0,
+    "churn_counts": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "gold_Y": 5,
+      "pred_Y": 5
+    },
+    "severity_within_1_pct": 96.0,
+    "severity_exact_pct": 52.0,
+    "quote_fidelity_pct": 93.3,
+    "quotes_rejected_by_guard": 2
+  },
+  "theme_confusions": [
+    {
+      "theme_gold": "customer support",
+      "theme_pred": "other",
+      "count": 2
+    },
+    {
+      "theme_gold": "M-Now late delivery",
+      "theme_pred": "delivery delay",
+      "count": 1
+    },
+    {
+      "theme_gold": "other",
+      "theme_pred": "no complaint",
+      "count": 1
+    },
+    {
+      "theme_gold": "product quality",
+      "theme_pred": "other",
+      "count": 1
+    },
+    {
+      "theme_gold": "product quality",
+      "theme_pred": "return/exchange failed",
+      "count": 1
+    },
+    {
+      "theme_gold": "refund delay",
+      "theme_pred": "other",
+      "count": 1
+    },
+    {
+      "theme_gold": "wrong/damaged item",
+      "theme_pred": "fake/counterfeit",
+      "count": 1
+    }
+  ],
+  "misses": [
+    {
+      "id": "AS-0239",
+      "miss_score": 3,
+      "gold": {
+        "theme": "customer support",
+        "churn": "Y",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "other",
+        "churn": "Y",
+        "severity": 2
+      },
+      "evidence_span": NaN,
+      "quote_ok": false,
+      "text": "Worse service experience i ever got\n\nI didn’t expected this kind of service from myntra it was my first order and i will never oder from this platform ever again."
+    },
+    {
+      "id": "PS-0643",
+      "miss_score": 2,
+      "gold": {
+        "theme": "wrong/damaged item",
+        "churn": "N",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "fake/counterfeit",
+        "churn": "N",
+        "severity": 3
+      },
+      "evidence_span": "kurta pajama mangwaya wo dusre brand ka bhej diya",
+      "quote_ok": true,
+      "text": "froud myntra mene ek kurta pajama mangwaya wo dusre brand ka bhej diya ab sale return nahi kar rahe bahane bana rahe he froud he myntra worst experience"
+    },
+    {
+      "id": "PS-0755",
+      "miss_score": 2,
+      "gold": {
+        "theme": "refund delay",
+        "churn": "Y",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "other",
+        "churn": "Y",
+        "severity": 3
+      },
+      "evidence_span": "Myntra fraud koi v use na kre",
+      "quote_ok": true,
+      "text": "Myntra fraud koi v use na kre customer ko bewkoof bnate h. Refund nhi krte or customer care ke name par customer ka dimag khate h or paise khate h customer ka😡😡😡😡😡"
+    },
+    {
+      "id": "PS-2936",
+      "miss_score": 2,
+      "gold": {
+        "theme": "M-Now late delivery",
+        "churn": "N",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "delivery delay",
+        "churn": "N",
+        "severity": 2
+      },
+      "evidence_span": "order still didn't not delivered it was 51 min delivery",
+      "quote_ok": true,
+      "text": "useless aap it's a fraud app they have taken the money yesterday for an order still didn't not delivered it was 51 min delivery omg and no customer support it's none"
+    },
+    {
+      "id": "PS-4377",
+      "miss_score": 2,
+      "gold": {
+        "theme": "product quality",
+        "churn": "Y",
+        "severity": "3"
+      },
+      "pred": {
+        "theme": "return/exchange failed",
+        "churn": "Y",
+        "severity": 3
+      },
+      "evidence_span": "they have denied my return, they are holding my return request",
+      "quote_ok": true,
+      "text": "The worst service I have ever had. I recently ordered a product, and the product I received is very low quality. Now they have denied my return, they are holding my return request, and they have not responded to my complaint. I suggest not to use this platform."
+    },
+    {
+      "id": "PS-3051",
+      "miss_score": 2,
+      "gold": {
+        "theme": "product quality",
+        "churn": "N",
+        "severity": "2"
+      },
+      "pred": {
+        "theme": "other",
+        "churn": "N",
+        "severity": 2
+      },
+      "evidence_span": "sab bakwaas hii aata hai sabse bekar hai yeh app",
+      "quote_ok": true,
+      "text": "isme kuch bhi mangao sab bakwaas hii aata hai sabse bekar hai yeh app"
+    },
+    {
+      "id": "PS-0780",
+      "miss_score": 2,
+      "gold": {
+        "theme": "customer support",
+        "churn": "N",
+        "severity": "1"
+      },
+      "pred": {
+        "theme": "other",
+        "churn": "N",
+        "severity": 2
+      },
+      "evidence_span": "myntra such poor services",
+      "quote_ok": true,
+      "text": "myntra such poor services"
+    },
+    {
+      "id": "PS-4966",
+      "miss_score": 2,
+      "gold": {
+        "theme": "other",
+        "churn": "N",
+        "severity": "1"
+      },
+      "pred": {
+        "theme": "no complaint",
+        "churn": "N",
+        "severity": null
+      },
+      "evidence_span": "अब इसकी जरूरत नहीं है",
+      "quote_ok": true,
+      "text": "अब इसकी जरूरत नहीं है"
+    }
+  ],
+  "missing_ids": [],
+  "bad_quote_ids": [
+    "AS-0239",
+    "PS-0657"
+  ]
+}

@@ -19,6 +19,7 @@ so cached results and eval scores are always tied to the exact prompt that made 
 
 Run:
   python -m src.extract --golden --version v2     # 100 golden items only
+  python -m src.extract --holdout --version v2    # 30 holdout items only
   python -m src.extract --version v1              # all items
 """
 
@@ -34,6 +35,7 @@ from src import llm
 
 FEEDBACK_PATH = Path("data/processed/feedback.csv")
 GOLDEN_PATH = Path("data/golden/golden_set.csv")
+HOLDOUT_PATH = Path("data/golden/holdout.csv")
 THEMES_PATH = Path("data/golden/themes.md")
 CACHE_DIR = Path("data/processed/cache")
 OUTPUT_DIR = Path("data/processed")
@@ -331,14 +333,16 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="LLM pain-point extraction")
     parser.add_argument("--version", default="v1", choices=sorted(PROMPTS))
-    parser.add_argument("--golden", action="store_true", help="only the golden-set ids")
+    subset = parser.add_mutually_exclusive_group()
+    subset.add_argument("--golden", action="store_true", help="only the golden-set ids")
+    subset.add_argument("--holdout", action="store_true", help="only the holdout ids")
     args = parser.parse_args()
 
     df = pd.read_csv(FEEDBACK_PATH, dtype=str, keep_default_na=False, encoding="utf-8-sig")
-    if args.golden:
-        golden_ids = pd.read_csv(GOLDEN_PATH, dtype=str, keep_default_na=False,
-                                 encoding="utf-8-sig")["id"]
-        df = df[df["id"].isin(golden_ids)]
+    label_file = GOLDEN_PATH if args.golden else HOLDOUT_PATH if args.holdout else None
+    if label_file:
+        ids = pd.read_csv(label_file, dtype=str, keep_default_na=False, encoding="utf-8-sig")["id"]
+        df = df[df["id"].isin(ids)]
 
     cache = load_cache(args.version)
     todo = df[~df["id"].isin(cache)]
@@ -359,7 +363,7 @@ def main() -> None:
     results = [guard_quote(cache[i], texts[i]) for i in df["id"] if i in cache]
     rejected = sum(not r["quote_valid"] for r in results)
     print(f"Quote guard: {rejected} evidence_span(s) were not exact substrings -> set to null")
-    suffix = "_golden" if args.golden else ""
+    suffix = "_golden" if args.golden else "_holdout" if args.holdout else ""
     out_path = OUTPUT_DIR / f"extractions_{args.version}{suffix}.jsonl"
     with out_path.open("w", encoding="utf-8") as f:
         for r in results:

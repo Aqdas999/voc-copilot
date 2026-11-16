@@ -12,7 +12,8 @@ Metrics (golden set = the truth):
 Also lists every row where theme or churn disagree, ranked worst first, so prompt
 changes can be targeted. Results go to evals/results/<version>.json.
 
-Run:  python -m evals.run_evals --version v1
+Run:  python -m evals.run_evals --version v1                 # vs golden set
+      python -m evals.run_evals --version v1 --set holdout   # vs 30-item holdout
 """
 
 import argparse
@@ -29,15 +30,22 @@ FEEDBACK_PATH = Path("data/processed/feedback.csv")
 RESULTS_DIR = Path("evals/results")
 
 
-def load_extractions(version: str) -> pd.DataFrame:
-    """Prefer the golden-only file; fall back to the full run."""
-    for name in (f"extractions_{version}_golden.jsonl", f"extractions_{version}.jsonl"):
+LABEL_SETS = {
+    "golden": GOLDEN_PATH,                            # 100 items the prompts were tuned on
+    "holdout": Path("data/golden/holdout.csv"),       # 30 items the prompts never saw
+}
+
+
+def load_extractions(version: str, label_set: str) -> pd.DataFrame:
+    """Prefer the subset file (e.g. _golden); fall back to the full run."""
+    for name in (f"extractions_{version}_{label_set}.jsonl", f"extractions_{version}.jsonl"):
         path = Path("data/processed") / name
         if path.exists():
             rows = [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l]
             print(f"Using {path}")
             return pd.DataFrame(rows)
-    sys.exit(f"No extractions found for {version}. Run: python -m src.extract --golden --version {version}")
+    sys.exit(f"No extractions found for {version}. "
+             f"Run: python -m src.extract --{label_set} --version {version}")
 
 
 def pct(numerator: int, denominator: int) -> float | None:
@@ -48,12 +56,16 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", default="v1")
+    parser.add_argument("--set", default="golden", choices=sorted(LABEL_SETS),
+                        help="which human-labelled set to score against")
     args = parser.parse_args()
+    labels_path = LABEL_SETS[args.set]
 
-    golden = pd.read_csv(GOLDEN_PATH, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    # 'golden' below means "the human labels", whichever set they come from.
+    golden = pd.read_csv(labels_path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     texts = pd.read_csv(FEEDBACK_PATH, dtype=str, keep_default_na=False,
                         encoding="utf-8-sig").set_index("id")["text"]
-    ext = load_extractions(args.version)
+    ext = load_extractions(args.version, args.set)
 
     # One row per golden item, with the model's answer alongside (missing -> NaN).
     df = golden.merge(ext, on="id", how="left", suffixes=("_gold", "_pred"))
@@ -121,7 +133,8 @@ def main() -> None:
         "run_date": date.today().isoformat(),
         # fingerprint of the golden labels used, so scores from different label versions
         # are never compared by accident
-        "golden_md5": hashlib.md5(GOLDEN_PATH.read_bytes()).hexdigest(),
+        "label_set": args.set,
+        "golden_md5": hashlib.md5(labels_path.read_bytes()).hexdigest(),
         "n_golden": len(golden),
         "n_scored": n,
         "metrics": metrics,
@@ -133,7 +146,9 @@ def main() -> None:
         "bad_quote_ids": scored.loc[~scored["quote_ok"], "id"].tolist(),
     }
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"{args.version}.json"
+    # golden results keep their original names (v1.json); other sets get a suffix
+    out = RESULTS_DIR / (f"{args.version}.json" if args.set == "golden"
+                         else f"{args.version}_{args.set}.json")
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # --- Print summary ---
