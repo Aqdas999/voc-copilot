@@ -1,0 +1,16 @@
+﻿theme,items,% of complaints (1-3★),churn_Y,avg_rating (1-3★ only),n_rated,quotes_nulled
+delivery delay,282,28.7,28,1.09,282,7
+customer support,105,10.7,7,1.09,105,2
+return/exchange failed,100,10.2,10,1.08,99,3
+refund delay,92,9.4,18,1.05,88,3
+order cancelled,79,8.0,10,1.13,78,4
+wrong/damaged item,74,7.5,10,1.06,70,4
+other,56,5.7,8,1.16,56,1
+app bugs/payments,48,4.9,3,1.23,44,1
+pricing/fees,31,3.2,0,1.29,31,1
+no complaint,31,3.2,0,2.13,31,0
+fake/counterfeit,27,2.7,2,1.04,27,0
+delivery agent behaviour,26,2.6,2,1.08,26,1
+product quality,17,1.7,1,1.18,17,0
+size/fit mismatch,8,0.8,0,1.4,5,0
+M-Now late delivery,6,0.6,0,1.0,3,2

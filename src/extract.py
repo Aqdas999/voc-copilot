@@ -20,6 +20,7 @@ so cached results and eval scores are always tied to the exact prompt that made 
 Run:
   python -m src.extract --golden --version v2     # 100 golden items only
   python -m src.extract --holdout --version v2    # 30 holdout items only
+  python -m src.extract --complaints --version v3 # 1-3★ + synthetic tickets only
   python -m src.extract --version v1              # all items
 """
 
@@ -356,6 +357,8 @@ def main() -> None:
     subset = parser.add_mutually_exclusive_group()
     subset.add_argument("--golden", action="store_true", help="only the golden-set ids")
     subset.add_argument("--holdout", action="store_true", help="only the holdout ids")
+    subset.add_argument("--complaints", action="store_true",
+                        help="only the complaint set: 1-3★ Play Store/App Store + synthetic tickets")
     args = parser.parse_args()
 
     df = pd.read_csv(FEEDBACK_PATH, dtype=str, keep_default_na=False, encoding="utf-8-sig")
@@ -363,6 +366,8 @@ def main() -> None:
     if label_file:
         ids = pd.read_csv(label_file, dtype=str, keep_default_na=False, encoding="utf-8-sig")["id"]
         df = df[df["id"].isin(ids)]
+    if args.complaints:
+        df = df[df.apply(priority, axis=1) == 0]
 
     cache = load_cache(args.version)
     todo = df[~df["id"].isin(cache)].copy()
@@ -404,7 +409,8 @@ def main() -> None:
     results = [guard_quote(cache[i], texts[i]) for i in df["id"] if i in cache]
     rejected = sum(not r["quote_valid"] for r in results)
     print(f"Quote guard: {rejected} evidence_span(s) were not exact substrings -> set to null")
-    suffix = "_golden" if args.golden else "_holdout" if args.holdout else ""
+    suffix = ("_golden" if args.golden else "_holdout" if args.holdout
+              else "_complaints" if args.complaints else "")
     out_path = OUTPUT_DIR / f"extractions_{args.version}{suffix}.jsonl"
     with out_path.open("w", encoding="utf-8") as f:
         for r in results:

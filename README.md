@@ -20,8 +20,8 @@ ingest (Play Store, App Store, synthetic) -> clean -> extract (LLM) -> cluster -
 |------|--------|--------|
 | Ingest | `src/ingest/*.py` | `data/raw/*.csv` |
 | Clean & merge | `src/clean.py` | `data/processed/feedback.csv` |
-| Extract | `src/extract.py` | `data/processed/extractions.jsonl` |
-| Cluster | `src/cluster.py` | themes with counts + trends |
+| Extract | `src/extract.py` | `data/processed/extractions_v3_complaints.jsonl` (1–3★ + SYN) |
+| Cluster | `src/cluster.py` | `theme_stats_v3_complaints.csv`, `theme_weekly_v3_complaints.csv` |
 | Insights | `src/insights.py` | quotes + RICE roadmap |
 | Evaluate | `evals/run_evals.py` | `evals/results/<prompt_version>.json` |
 
@@ -46,6 +46,11 @@ Snapshot collected 15 Nov 2026. Cleaning drops items under 3 words and duplicate
 - **Short time window for English reviews.** Myntra gets ~400 English Play Store reviews a
   day, so the newest 5,000 cover only ~2 weeks (2–14 Nov 2026); App Store covers ~1 week.
   Trends are week-over-week at best. Hindi reviews span a year because they are rare.
+- **Only 1–3★ reviews (plus synthetic tickets) were run through the LLM.** Groq's free tier
+  allows only a limited number of tokens per day, so the 4–5★ Play Store and App Store reviews were not
+  extracted. Complaints hidden inside high-star reviews (e.g. "love the app, but my refund
+  took 3 weeks", 4★) are therefore not counted. All theme shares are
+  **% of complaints (1–3★)**, not % of all reviews.
 - **Not a representative sample of all users.** Short reviews ("good app") are mostly praise
   and are dropped, so the cleaned set skews negative (Play Store mean 3.60 vs. Myntra's
   public 4.59). Counts describe *what people complain about*, not overall satisfaction.
