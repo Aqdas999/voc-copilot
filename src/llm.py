@@ -125,7 +125,11 @@ def _is_rate_limit(error: Exception) -> bool:
 
 
 def _suggested_wait(error: Exception) -> float:
-    """Seconds the API told us to wait, if it said (Groq: 'Please try again in 15.21s')."""
+    """Seconds the API told us to wait, if it said.
+
+    Groq says e.g. 'Please try again in 15.21s' (per-minute limit) or
+    'try again in 1h2m3.5s' (daily limit), and may also send a retry-after header.
+    """
     response = getattr(error, "response", None)
     retry_after = getattr(response, "headers", {}).get("retry-after") if response else None
     if retry_after:
@@ -133,9 +137,10 @@ def _suggested_wait(error: Exception) -> float:
             return float(retry_after)
         except ValueError:
             pass
-    match = re.search(r"try again in (?:(\d+)m)?([\d.]+)s", str(error))
-    if match:
-        return int(match.group(1) or 0) * 60 + float(match.group(2))
+    match = re.search(r"try again in (?:(\d+)h)?(?:(\d+)m)?(?:([\d.]+)s)?", str(error))
+    if match and any(match.groups()):
+        hours, minutes, seconds = match.groups()
+        return int(hours or 0) * 3600 + int(minutes or 0) * 60 + float(seconds or 0)
     return 0.0
 
 

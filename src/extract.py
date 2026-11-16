@@ -27,6 +27,7 @@ import argparse
 import json
 import re
 import sys
+import time
 from pathlib import Path
 
 import pandas as pd
@@ -42,6 +43,9 @@ OUTPUT_DIR = Path("data/processed")
 
 BATCH_SIZE = 20
 MAX_BATCH_ATTEMPTS = 3   # re-ask if the JSON is broken or items are missing
+# If this many batches in a row come back with nothing (e.g. network blocked, daily limit
+# that won't clear), stop instead of racing through every remaining batch. Rerun to resume.
+MAX_EMPTY_BATCHES_IN_A_ROW = 3
 
 
 # ---------------------------------------------------------------------------
@@ -329,6 +333,22 @@ def extract_batch(version: str, batch: pd.DataFrame) -> list[dict]:
     return list(got.values())
 
 
+def priority(row: pd.Series) -> int:
+    """Which items to extract first, so a run cut short still covers the complaints.
+
+    0 = complaints first: Play Store / App Store 1-3 stars, and all synthetic tickets
+    1 = 4-star reviews
+    2 = 5-star reviews
+    (Only changes the ORDER of work; the output file is always written in feedback order.)
+    """
+    if row["source"] == "synthetic_ticket" or row["rating"] in ("1", "2", "3"):
+        return 0
+    return 1 if row["rating"] == "4" else 2
+
+
+PRIORITY_NAMES = {0: "1-3★ + SYN", 1: "4★", 2: "5★"}
+
+
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="LLM pain-point extraction")
@@ -345,17 +365,38 @@ def main() -> None:
         df = df[df["id"].isin(ids)]
 
     cache = load_cache(args.version)
-    todo = df[~df["id"].isin(cache)]
+    todo = df[~df["id"].isin(cache)].copy()
+    # Complaints first, then 4★, then 5★ (stable sort keeps feedback order within a tier).
+    todo["tier"] = todo.apply(priority, axis=1)
+    todo = todo.sort_values("tier", kind="stable")
     print(f"Prompt {args.version}: {len(df)} items, {len(df) - len(todo)} cached, "
           f"{len(todo)} to extract")
+    print("  to extract by tier: " + ", ".join(
+        f"{PRIORITY_NAMES[t]} {n}" for t, n in todo["tier"].value_counts().sort_index().items()))
 
-    for start in range(0, len(todo), BATCH_SIZE):
+    n_batches = -(-len(todo) // BATCH_SIZE)
+    started = time.time()
+    empty_in_a_row = 0
+    for number, start in enumerate(range(0, len(todo), BATCH_SIZE), 1):
         batch = todo.iloc[start:start + BATCH_SIZE]
-        print(f"  batch {start // BATCH_SIZE + 1}/{-(-len(todo) // BATCH_SIZE)} "
-              f"({len(batch)} items)")
+        tiers = "/".join(PRIORITY_NAMES[t] for t in sorted(batch["tier"].unique()))
+        print(f"  batch {number}/{n_batches} [{tiers}] {len(batch)} items ...")
         records = extract_batch(args.version, batch)
         append_cache(args.version, records)       # saved immediately: a crash loses one batch at most
         cache.update({r["id"]: r for r in records})
+
+        # Progress line: what this batch got, overall coverage, time so far and a rough ETA.
+        done_here = int(df["id"].isin(cache).sum())
+        elapsed = time.time() - started
+        eta_min = elapsed / number * (n_batches - number) / 60
+        print(f"    got {len(records)}/{len(batch)} | {done_here}/{len(df)} cached "
+              f"| {elapsed / 60:.1f} min elapsed, ~{eta_min:.0f} min left")
+
+        empty_in_a_row = 0 if records else empty_in_a_row + 1
+        if empty_in_a_row >= MAX_EMPTY_BATCHES_IN_A_ROW:
+            print(f"  {empty_in_a_row} batches in a row returned nothing -> stopping. "
+                  "Fix the cause (network / limit), then rerun to resume from cache.")
+            break
 
     # Write the output for exactly the requested ids, in feedback order,
     # with the quote guard applied (invalid evidence_span -> None).
