@@ -149,7 +149,74 @@ Items:
 {items_json}
 """
 
-PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V2}
+# V3 changes vs V2 (driven by v2 eval misses):
+#   - Hindi (Devanagari) and Hinglish churn examples: v2 missed "install mat karna" /
+#     "purchase na karen" style churn
+#   - "app" rule: returns/refunds/delivery reviews are not "app bugs/payments" just
+#     because they say "app"
+# Examples are again INVENTED and checked for no 5-word overlap with the golden set.
+PROMPT_V3 = """You analyse customer feedback about Myntra, an Indian fashion shopping app.
+Feedback may be in English, Hindi, or Hinglish (Hindi written in English letters).
+
+For EACH item below, return one JSON object with these fields:
+- "id": copy the item's id exactly.
+- "pain_point": the main problem in under 12 words of plain English ("" if no complaint).
+- "theme": exactly ONE name from this list:
+{theme_list}
+- "sentiment": "positive", "neutral", "negative", or "mixed".
+- "severity": 1, 2 or 3 (null only if theme is "no complaint"):
+    1 = minor annoyance, no money or order lost
+    2 = real problem with an order (late delivery, wrong size, return hassle)
+    3 = money lost or stuck, repeated failures, fraud/fake claims, or churn_signal is "Y"
+- "churn_signal": "Y" or "N" (rules below).
+- "evidence_span": a quote from the text (rules below).
+
+THEME RULES
+- Two or more problems: pick the ROOT CAUSE, not the consequence.
+  "Refund not received and support was slow" -> "refund delay" (slow support is the consequence).
+  Only use "customer support" when support itself is the main problem.
+- The word "app" does NOT make a review "app bugs/payments". Customers call Myntra
+  "the app". If the actual problem is a return, refund, delivery, cancellation or
+  wrong item, use that theme: "worst app, nobody picks up my return" -> "return/exchange failed".
+  Use "app bugs/payments" only for problems with the app itself: crashes, payment
+  failures, login/OTP, coupons not applying, broken search or filters.
+- Short angry reviews ARE complaints. Never label them "no complaint".
+  With no detail, use the theme the words point to: "useless app, total waste" ->
+  "app bugs/payments"; "service is the worst" -> "customer support"; "always late" -> "delivery delay".
+- "no complaint" is only for praise or neutral text with no problem at all.
+
+CHURN RULES
+"Y" only if the customer (a) says they will leave or stop using Myntra, OR (b) tells
+others not to use Myntra, OR (c) recommends a competitor. This applies in every
+language: Hindi and Hinglish phrasing counts exactly like English.
+"N" for anger without intent to leave — including insults like "worst app" or "fraud",
+and "would not recommend" on its own.
+Examples (invented):
+  "Uninstalling today. Third refund stuck this month." -> Y (leaving)
+  "Friends, please don't order from here, you will lose your money." -> Y (tells others)
+  "Bas, ab Nykaa Fashion se hi lungi, yahan size kabhi sahi nahi aata." -> Y (competitor)
+  "भाई लोग यह ऐप डाउनलोड मत करना, पैसे फंस जाते हैं" -> Y (don't install, Hindi)
+  "Yahan se kapde mat mangwana koi, sab purana maal bhejte hain" -> Y (don't buy, Hinglish)
+  "अब से यहाँ से कभी कुछ नहीं मंगाऊँगी" -> Y (never ordering again, Hindi)
+  "Ajio pe shift ho jao, wahan exchange ek din mein hota hai" -> Y (use Ajio instead, Hinglish)
+  "Pathetic app, exchange took three weeks." -> N (anger only)
+  "Bahut ghatiya service hai, kab sudhroge tum log?" -> N (anger only, Hinglish)
+  "Would not recommend. Delivery boy was rude." -> N ("would not recommend" alone)
+
+QUOTE RULES for evidence_span
+- Copy a phrase of 3-20 words CHARACTER BY CHARACTER from the item's text.
+- Keep typos, slang, capitals, emoji, Hindi script and Hinglish exactly as written:
+  if the text says "delevared", write "delevared", not "delivered".
+- No "..." or "…", no skipped words, no translation, no fixes, no line breaks.
+- One continuous piece of text that appears exactly in the original.
+
+Return ONLY a JSON array of {n} objects, one per item, no other text.
+
+Items:
+{items_json}
+"""
+
+PROMPTS = {"v1": PROMPT_V1, "v2": PROMPT_V2, "v3": PROMPT_V3}
 
 
 def build_prompt(version: str, batch: pd.DataFrame) -> str:
