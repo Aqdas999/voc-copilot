@@ -47,6 +47,7 @@ GROQ_MAX_TOKENS = int(os.getenv("GROQ_MAX_TOKENS", "4096"))
 MAX_RETRIES = 6           # attempts per provider when we hit a 429
 BASE_BACKOFF_SECONDS = 2  # wait 2s, 4s, 8s, 16s... between retries
 PAUSE_BETWEEN_CALLS = 1.0 # small courtesy pause after every successful call
+NETWORK_BACKOFF_SECONDS = 30  # first wait when the network is unreachable (doubles each retry)
 
 # Clients are created on first use, so a missing key only matters
 # for the provider we actually try to call.
@@ -124,6 +125,16 @@ def _is_rate_limit(error: Exception) -> bool:
     return getattr(error, "status_code", None) == 429 or getattr(error, "code", None) == 429
 
 
+def _is_connection_error(error: Exception) -> bool:
+    """True if we couldn't reach the server at all (Wi-Fi dropped, DNS failed, PC woke up).
+
+    Worth retrying after a pause: the network often comes back within a minute or two.
+    Matched by class name so we don't import both SDKs' exception types.
+    """
+    return type(error).__name__ in ("APIConnectionError", "APITimeoutError",
+                                    "ConnectError", "ConnectTimeout")
+
+
 def _suggested_wait(error: Exception) -> float:
     """Seconds the API told us to wait, if it said.
 
@@ -158,7 +169,16 @@ def _call_with_retries(provider: str, prompt: str, temperature: float) -> str:
             return text
         except Exception as error:
             last_attempt = attempt == MAX_RETRIES - 1
-            if not _is_rate_limit(error) or last_attempt:
+            if last_attempt:
+                raise
+            if _is_connection_error(error):
+                # Network down: wait 30s, 60s, 120s... (about 15 min in total) for it to return.
+                wait = NETWORK_BACKOFF_SECONDS * (2 ** attempt)
+                print(f"[llm] {provider} unreachable ({type(error).__name__}). Retrying in "
+                      f"{wait}s (attempt {attempt + 1}/{MAX_RETRIES})")
+                time.sleep(wait)
+                continue
+            if not _is_rate_limit(error):
                 raise
             # Exponential backoff (2s, 4s, 8s...) — or longer, if the API said how long to wait.
             backoff = BASE_BACKOFF_SECONDS * (2 ** attempt)
