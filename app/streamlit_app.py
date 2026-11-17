@@ -124,7 +124,7 @@ st.warning(
     "high-star reviews are missed and shares are % of complaints, not of all reviews.  \n"
     f"• **The cleaned Play Store mean ({ps_mean:.2f}★) is not Myntra's real rating** "
     f"({PLAYSTORE_PUBLIC_RATING}★ on the store): short praise reviews were dropped in cleaning.  \n"
-    "• **About 2 weeks of data** (older items are a few Hindi reviews), so week-over-week "
+    "• **About 2 weeks of data** (plus ~36 older items, mostly Hindi/Hinglish reviews), so week-over-week "
     "changes are directional, not trends.  \n"
     "• **Synthetic support tickets** (IDs `SYN-…`) are invented examples and are always "
     "labelled SYNTHETIC.", icon="⚠️")

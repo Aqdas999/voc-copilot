@@ -14,6 +14,9 @@ AND a "credited" message) and a review can match none.
                            is not there ("credited likh dete h ... aata ni h")
                            - "refund not credited" alone does NOT count: that is just a delay
 
+Also, for the roadmap's R1 reach: how many ORDER CANCELLED complaints say the refund/money
+has not come back (refund/money word near a negation) -> cancelled_refund_crosscheck.csv.
+
 Output: data/processed/refund_crosscheck.csv (one row per refund-delay item, a 0/1 column per
 rule) and a printed summary. src/insights.py adds the counts to insights.json, labelled
 "keyword count", so the dashboard can show them next to the LLM sub-issues.
@@ -84,6 +87,41 @@ def flags(text: str) -> dict:
     }
 
 
+# --- Rule 4 (for the roadmap's reach): ORDER CANCELLED items whose money did not come back ---
+# A refund/money word within 60 characters of a negation or "pending/stuck".
+# "refunded" on its own means the money DID arrive, so it only counts as "not refunded".
+MONEY_WORD = re.compile(
+    r"refund(?!ed\b)\w*|money|paise?|paisa|pese|amount|payment|₹|रिफंड|पैसे|पैसा"
+    r"|not\s+(been\s+)?refunded", re.IGNORECASE)
+NEGATION = re.compile(
+    r"\b(not|no|never|didn.?t|doesn.?t|haven.?t|hasn.?t|won.?t|without|yet\s+to|pending|stuck"
+    r"|nahi|nhi|nahin|ni|na)\b|ना|नहीं", re.IGNORECASE)
+WINDOW = 60
+CANCEL_THEME = "order cancelled"
+CANCEL_OUTPUT_PATH = Path("data/processed/cancelled_refund_crosscheck.csv")
+
+
+REFUNDED_BEFORE = re.compile(r"refunded\s+(my|the|your|our)?\s*$", re.IGNORECASE)
+
+
+def money_not_back(text: str) -> bool:
+    for m in MONEY_WORD.finditer(text):
+        if REFUNDED_BEFORE.search(text[max(0, m.start() - 25):m.start()]):
+            continue                      # "refunded my money" = the money came back
+        if NEGATION.search(text[max(0, m.start() - WINDOW):m.end() + WINDOW]):
+            return True
+    return False
+
+
+def cancelled_refund_missing() -> pd.DataFrame:
+    """Order-cancelled items with a 0/1 flag: says the refund/money has not come back."""
+    ext = pd.DataFrame([json.loads(l) for l in EXTRACTIONS_PATH.read_text(encoding="utf-8").splitlines() if l])
+    fb = pd.read_csv(FEEDBACK_PATH, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    items = ext[ext["theme"] == CANCEL_THEME][["id"]].merge(fb[["id", "source", "language", "text"]], on="id")
+    items["refund_not_received"] = items["text"].map(money_not_back).astype(int)
+    return items
+
+
 RULES = ["cancel_or_undelivered", "return_or_pickup", "credited_not_received"]
 LABELS = {
     "cancel_or_undelivered": "mentions cancel / not delivered",
@@ -124,6 +162,13 @@ def main() -> None:
         print(f"  {c['label']:52s} {c['keyword_count']:3d}   e.g. {', '.join(c['example_ids'])}")
     print(f"  {'none of these':52s} {summary['none_of_these']:3d}")
     print(f"\nSaved {OUTPUT_PATH}")
+
+    cancelled = cancelled_refund_missing()
+    cancelled.drop(columns=["text"]).to_csv(CANCEL_OUTPUT_PATH, index=False, encoding="utf-8-sig")
+    hits = cancelled[cancelled["refund_not_received"] == 1]
+    print(f"\nOrder cancelled: {len(hits)} of {len(cancelled)} say the refund/money has not come back "
+          f"(keyword count): {', '.join(hits['id'])}")
+    print(f"Saved {CANCEL_OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

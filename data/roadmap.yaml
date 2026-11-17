@@ -10,7 +10,7 @@ meta:
   owner: Aqdas
   status: draft
   updated: 2026-11-17
-  scope: "982 complaints (1-3 star Play Store + App Store reviews, synthetic tickets), 2-14 Nov 2026"
+  scope: "Mostly 2–14 Nov 2026 (plus ~36 older items from Dec 2025 onward, mostly Hindi/Hinglish reviews)"
   caveat: "Effort values are PM estimates, not engineering estimates. Reach is approximate."
 
 recommendations:
@@ -22,8 +22,10 @@ recommendations:
       the bank reference number (UTR) once credited so users can verify a "completed"
       refund themselves.
     themes: ["refund delay", "order cancelled"]
-    reach: 118
-    reach_note: "refund delay 92 + order cancelled without notice/refund ~26 (approximate)"
+    reach: 101
+    reach_note: >-
+      refund delay 92 + 9 order-cancelled complaints that say the refund/money has not come
+      back (keyword count, src/refund_crosscheck.py; no overlap, each complaint has one theme)
     impact: 3
     confidence: 0.8
     effort: 4
