@@ -273,47 +273,107 @@ with tab_roadmap:
     st.subheader("Roadmap (RICE)")
     if not ROADMAP_PATH.exists():
         st.info(f"`{ROADMAP_PATH}` not found yet. Add it and refresh. Expected shape:")
-        st.code("""recommendations:
-  - title: Refund status that matches the bank   # what to build
-    theme: refund delay                           # theme it addresses
-    reach: 92          # complaints / users affected
-    impact: 2          # 0.25 / 0.5 / 1 / 2 / 3
+        st.code("""meta:
+  status: draft
+  caveat: Effort values are PM estimates.
+recommendations:
+  - id: R1
+    title: Refund tracker for every refund
+    description: What to build.
+    themes: [refund delay, order cancelled]
+    reach: 118         # complaints the fix addresses
+    impact: 3          # 1 (low) .. 3 (high)
     confidence: 0.8    # 0-1
-    effort: 3          # person-weeks
-    evidence: [PS-0154, AS-0193, PS-0319]         # IDs from the data
-    why: One line on the reasoning.
+    effort: 4          # person-weeks
+    evidence:          # claims (IDs like PS-0154 inside a claim get their quote shown)
+      - Refund delay has the highest churn rate (19.6%).
+    key_metric: Refund-related complaints
+watch:                 # same fields, plus why_watch
 not_building:
-  - title: Chatbot redesign
+  - title: M-Now-specific fixes
     reason: Why not now.""", language="yaml")
     else:
+        import re
         import yaml
         roadmap = yaml.safe_load(ROADMAP_PATH.read_text(encoding="utf-8")) or {}
-        recs = roadmap.get("recommendations", [])
-        for r in recs:      # compute RICE if the file doesn't give it
-            if "rice" not in r and all(isinstance(r.get(k), (int, float))
-                                       for k in ("reach", "impact", "confidence", "effort")):
-                r["rice"] = round(r["reach"] * r["impact"] * r["confidence"] / r["effort"], 1)
-        if recs:
-            cols = [c for c in ("title", "theme", "reach", "impact", "confidence", "effort", "rice")
-                    if any(c in r for r in recs)]
-            st.dataframe(pd.DataFrame(recs)[cols].sort_values("rice", ascending=False)
-                         if "rice" in cols else pd.DataFrame(recs)[cols],
+        meta = roadmap.get("meta", {})
+        known_themes = set(complaints["theme"])
+        by_id = complaints.set_index("id")
+        id_pattern = re.compile(r"\b(?:PS|AS|SYN|RD)-\d{4}\b")
+
+        def with_rice(items: list) -> list:
+            """RICE = Reach x Impact x Confidence / Effort, computed here (not read from the file)."""
+            for r in items:
+                numbers = all(isinstance(r.get(k), (int, float))
+                              for k in ("reach", "impact", "confidence", "effort"))
+                if numbers and r["effort"] > 0:
+                    r["rice_score"] = round(r["reach"] * r["impact"] * r["confidence"] / r["effort"], 1)
+                r["themes"] = r.get("themes") or ([r["theme"]] if r.get("theme") else [])
+            return items
+
+        def rice_table(items: list) -> None:
+            rows = [{"id": r.get("id", ""), "title": r.get("title", ""), "themes": ", ".join(r["themes"]),
+                     "reach": r.get("reach"), "impact": r.get("impact"),
+                     "confidence": r.get("confidence"), "effort (wks)": r.get("effort"),
+                     "RICE score": r.get("rice_score")} for r in items]
+            st.dataframe(pd.DataFrame(rows).sort_values("RICE score", ascending=False),
                          hide_index=True, use_container_width=True)
-            st.markdown("**Evidence behind each recommendation**")
-            by_id = complaints.set_index("id")
-            for r in recs:
-                with st.expander(r.get("title", "recommendation")):
-                    if r.get("why"):
-                        st.markdown(r["why"])
-                    for qid in r.get("evidence", []):
-                        if qid in by_id.index and isinstance(by_id.at[qid, "evidence_span"], str):
-                            x = by_id.loc[qid]
-                            quote_card(qid, x["source"], x["language"], x["evidence_span"],
-                                       x["url"] or None, x["rating"] or None, x["date"].date())
-                        else:
-                            st.markdown(f":red[**{qid}**: not found in the complaint set "
-                                        "or has no verified quote]")
-        st.markdown("**Not building (and why)**")
+
+        def details(r: dict) -> None:
+            """Description, evidence claims, cited IDs (checked), quotes for the themes, metric."""
+            if r.get("description"):
+                st.markdown(r["description"])
+            if r.get("reach_note"):
+                st.caption(f"Reach: {r['reach_note']}")
+            for t in r["themes"]:
+                if t not in known_themes:
+                    st.markdown(f":red[Theme **{t}** is not a theme in the data]")
+            st.markdown("**Evidence**")
+            for claim in r.get("evidence", []):
+                st.markdown(f"- {claim}")
+                for qid in id_pattern.findall(str(claim)):      # IDs cited inside a claim
+                    if qid in by_id.index and isinstance(by_id.at[qid, "evidence_span"], str):
+                        x = by_id.loc[qid]
+                        quote_card(qid, x["source"], x["language"], x["evidence_span"],
+                                   x["url"] or None, x["rating"] or None, x["date"].date())
+                    else:
+                        st.markdown(f":red[**{qid}**: not found in the complaint set "
+                                    "or has no verified quote]")
+            quotes = [q for t in r["themes"] if t in insight_by_theme
+                      for q in insight_by_theme[t]["quotes"][:2]]
+            if quotes:
+                st.markdown("**What customers say** (verified quotes from the theme insights)")
+                for q in quotes:
+                    quote_card(q["id"], q["source"], q["language"], q["quote"], q.get("url"),
+                               q.get("rating"), q.get("date"))
+            if r.get("why_watch"):
+                st.markdown(f"**Why watch, not build:** {r['why_watch']}")
+            if r.get("key_metric"):
+                st.markdown(f"**Key metric:** {r['key_metric']}")
+
+        if meta:
+            st.info(" · ".join(f"**{k}:** {meta[k]}" for k in ("status", "updated", "scope")
+                               if meta.get(k))
+                    + (f"  \n⚠️ {meta['caveat']}" if meta.get("caveat") else ""))
+        st.caption("RICE = Reach × Impact × Confidence ÷ Effort, computed by the dashboard.")
+
+        recs = with_rice(roadmap.get("recommendations", []))
+        if recs:
+            st.markdown("### Recommendations")
+            rice_table(recs)
+            for r in sorted(recs, key=lambda r: -(r.get("rice_score") or 0)):
+                with st.expander(f"{r.get('id', '')} {r.get('title', '')}: RICE {r.get('rice_score')}"):
+                    details(r)
+
+        watch = with_rice(roadmap.get("watch", []))
+        if watch:
+            st.markdown("### Watch list")
+            rice_table(watch)
+            for r in watch:
+                with st.expander(f"{r.get('id', '')} {r.get('title', '')}: RICE {r.get('rice_score')}"):
+                    details(r)
+
+        st.markdown("### Not building (and why)")
         nb = roadmap.get("not_building", [])
         if nb:
             st.dataframe(pd.DataFrame(nb), hide_index=True, use_container_width=True)

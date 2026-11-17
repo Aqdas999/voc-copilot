@@ -1,0 +1,93 @@
+# Myntra VoC Copilot: roadmap recommendations
+# RICE = Reach x Impact x Confidence / Effort
+#   reach      = number of complaints (1-3 star) the fix addresses
+#   impact     = 1 (low) .. 3 (high), based on churn rate and severity
+#   confidence = 0..1, how sure we are the evidence supports this fix
+#   effort     = person-weeks, a PM ESTIMATE that has NOT been validated with engineering
+# The dashboard should compute rice_score itself from these fields.
+
+meta:
+  owner: Aqdas
+  status: draft
+  updated: 2026-11-17
+  scope: "982 complaints (1-3 star Play Store + App Store reviews, synthetic tickets), 2-14 Nov 2026"
+  caveat: "Effort values are PM estimates, not engineering estimates. Reach is approximate."
+
+recommendations:
+  - id: R1
+    title: "Refund tracker for every refund"
+    description: >
+      For every refund (cancellation, non-delivery, return): show status and ETA on the
+      order page, push an update at each stage (initiated, processed, credited), and show
+      the bank reference number (UTR) once credited so users can verify a "completed"
+      refund themselves.
+    themes: ["refund delay", "order cancelled"]
+    reach: 118
+    reach_note: "refund delay 92 + order cancelled without notice/refund ~26 (approximate)"
+    impact: 3
+    confidence: 0.8
+    effort: 4
+    evidence:
+      - "Refund delay has the highest churn rate of any major theme: 19.6% (18 of 92), about 2x delivery delay."
+      - "Refund delay's share of complaints rose from 7.9% to 11.0% week-over-week."
+      - "About 1 in 3 refund complaints are about cancelled or undelivered orders (LLM split 28, keyword count 30)."
+      - "About 11 users say the refund was marked completed or credited but never arrived (keyword count 11, LLM 10)."
+    key_metric: "Refund-related complaints and refund-related contacts to customer support"
+
+  - id: R2
+    title: "Delivery-delay transparency"
+    description: >
+      Proactively notify users when an order will miss its promised date, with a new date
+      and a reason, plus a one-tap cancel with an instant refund once the delay passes a
+      threshold.
+    themes: ["delivery delay"]
+    reach: 282
+    impact: 1.5
+    confidence: 0.7
+    effort: 6
+    evidence:
+      - "Delivery delay is the largest theme: 282 complaints (28.7%)."
+      - "Its share is flat week-over-week (29.7% to 29.5%), so it is a chronic problem rather than a growing one."
+      - "Churn rate is 9.9%, about half of refund delay's."
+    key_metric: "Delivery-delay complaints and 'where is my order' contacts"
+
+  - id: R3
+    title: "Return pickup reliability"
+    description: >
+      Let users reschedule a missed return pickup themselves, and auto-escalate to support
+      when a pickup is missed.
+    themes: ["return/exchange failed"]
+    reach: 100
+    impact: 2
+    confidence: 0.8
+    effort: 4
+    evidence:
+      - "Return/exchange failed: 100 complaints (10.2%); share up from 9.4% to 11.4% week-over-week."
+      - "Top issues: return pickup missed or rescheduled (17) and return/exchange stuck in pending (15)."
+    key_metric: "Return/exchange complaints and the rate of failed pickups"
+
+watch:
+  - id: W1
+    title: "Delivery agent safety"
+    description: >
+      Add an in-app 'report delivery agent' option, and show a clear 'never pay extra'
+      message on cash-on-delivery orders.
+    themes: ["delivery agent behaviour"]
+    reach: 26
+    impact: 3
+    confidence: 0.5
+    effort: 1
+    evidence:
+      - "26 complaints (2.6%), rising from 10 to 16 week-over-week."
+      - "Includes reports of agents asking for extra cash: low volume, but a trust and safety risk."
+    why_watch: "Low volume. Track it weekly; escalate if it keeps growing."
+
+not_building:
+  - title: "M-Now-specific fixes"
+    reason: >
+      M-Now is only 0.6% of complaints (6), with no churn signals. The original hypothesis
+      that M-Now was a major pain point was not supported by the data.
+  - title: "Size & fit improvements (for now)"
+    reason: >
+      Size/fit is only 0.8% of the complaints analysed, but those complaints likely sit in
+      the 4-5 star reviews, which were not extracted. Not enough evidence to decide either way.
