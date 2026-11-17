@@ -30,11 +30,36 @@ PROCESSED = Path("data/processed")
 ROADMAP_PATH = Path("data/roadmap.yaml")
 RESULTS_DIR = Path("evals/results")
 TRY_IT_LIMIT = 20                   # cap so the free LLM quota lasts
+TRY_IT_RUNS_PER_SESSION = 3         # LLM runs allowed per browser session (public demo)
 SOURCE_NAMES = {"playstore": "Play Store", "appstore": "App Store", "synthetic_ticket": "SYN (synthetic)"}
 PLAYSTORE_PUBLIC_RATING = 4.59      # Myntra's Play Store listing rating when scraped (Nov 2026)
 FLAT_PTS = 0.5                      # share changes smaller than this are shown as flat
 
 st.set_page_config(page_title="Myntra VoC Copilot", page_icon="🛍️", layout="wide")
+
+
+# ---------------------------------------------------------------------------
+# API keys: Streamlit Cloud secrets first, then the local .env file
+# ---------------------------------------------------------------------------
+def read_secret(name: str) -> str | None:
+    """Value from st.secrets (Streamlit Community Cloud), else from .env / the environment."""
+    try:
+        value = st.secrets.get(name)
+    except Exception:               # no secrets.toml at all (normal when running locally)
+        value = None
+    return str(value) if value else os.getenv(name)
+
+
+from dotenv import load_dotenv  # noqa: E402
+
+load_dotenv()
+# src/llm.py reads keys with os.getenv, so copy any secrets into the environment
+# before it is imported (only the Try it tab imports it).
+for _name in ("GROQ_API_KEY", "GEMINI_API_KEY", "LLM_PROVIDER"):
+    _value = read_secret(_name)
+    if _value:
+        os.environ[_name] = _value
+HAS_LLM_KEY = bool(os.getenv("GROQ_API_KEY") or os.getenv("GEMINI_API_KEY"))
 
 
 # ---------------------------------------------------------------------------
@@ -444,8 +469,21 @@ with tab_try:
     st.subheader("Try it: run the v3 extraction on your own reviews")
     st.caption(f"One review per line, up to {TRY_IT_LIMIT}. This calls the free-tier LLM "
                "(Groq), so it can take a minute, longer if the daily limit is reached. "
-               "Nothing is saved.")
-    pasted = st.text_area("Reviews", height=200, placeholder=(
+               f"Limited to {TRY_IT_RUNS_PER_SESSION} runs per session. Nothing is saved.")
+    runs_used = st.session_state.get("try_runs", 0)
+    runs_left = TRY_IT_RUNS_PER_SESSION - runs_used
+    if not HAS_LLM_KEY:
+        st.info("Try it is switched off here because no LLM API key is configured. "
+                "Everything else on this page works from precomputed results. To enable it, "
+                "add `GROQ_API_KEY` to the app's secrets (or to `.env` when running locally).",
+                icon="🔑")
+    elif runs_left <= 0:
+        st.info(f"You've used all {TRY_IT_RUNS_PER_SESSION} runs for this session, which keeps "
+                "the free LLM quota available for other visitors. Thanks for trying it!", icon="✋")
+    else:
+        st.caption(f"Runs left this session: {runs_left} of {TRY_IT_RUNS_PER_SESSION}.")
+    try_enabled = HAS_LLM_KEY and runs_left > 0
+    pasted = st.text_area("Reviews", height=200, disabled=not try_enabled, placeholder=(
         "Refund not received 2 weeks after pickup, never ordering from Myntra again\n"
         "Delivery boy marked it delivered but I never got the parcel"))
     lines = [l.strip() for l in pasted.splitlines() if l.strip()]
@@ -453,7 +491,9 @@ with tab_try:
         st.warning(f"{len(lines)} reviews pasted; only the first {TRY_IT_LIMIT} will be used.")
         lines = lines[:TRY_IT_LIMIT]
 
-    if st.button(f"Extract {len(lines)} review(s)", disabled=not lines, type="primary"):
+    if st.button(f"Extract {len(lines)} review(s)", disabled=not (lines and try_enabled),
+                 type="primary"):
+        st.session_state["try_runs"] = runs_used + 1     # counted even if the call fails
         from src import extract   # imported here so other tabs never touch the LLM code
         batch = pd.DataFrame({"id": [f"TRY-{i:04d}" for i in range(1, len(lines) + 1)], "text": lines})
         with st.spinner("Calling the LLM..."):
@@ -465,6 +505,9 @@ with tab_try:
         text_by_id = dict(zip(batch["id"], batch["text"]))
         st.session_state["try_results"] = [extract.guard_quote(r, text_by_id[r["id"]]) for r in records]
         st.session_state["try_missing"] = len(batch) - len(records)
+        if not records:
+            st.stop()               # keep the error message on screen
+        st.rerun()                  # redraw so "Runs left" above shows the new count
 
     results = st.session_state.get("try_results")
     if results:
