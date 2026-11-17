@@ -36,6 +36,10 @@ The eval rubric is maintained in the project PRD, not in this repo. What the cod
   is an exact substring), a quote-relevance judge (quotes scoring below 4/5 or mainly about
   another theme are dropped), and an LLM judge scoring each insight 1–5 for specificity,
   grounding and actionability.
+- **Refund-delay cross-check** (`src/refund_crosscheck.py`, no LLM): regex keyword counts
+  (cancel / not delivered, return / pickup, "credited" but not received) saved to
+  `data/processed/refund_crosscheck.csv` and shown on the dashboard as "keyword count" next to
+  the LLM sub-issues. Counts overlap and are a sanity check, not a classification.
 
 ### Data sources
 

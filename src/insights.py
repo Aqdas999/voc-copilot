@@ -36,7 +36,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from src import llm
+from src import llm, refund_crosscheck
 from src.cluster import load
 from src.extract import THEME_NAMES
 
@@ -452,6 +452,12 @@ def main() -> None:
                         "sub_issues": subs, "other_resplit": resplit, "quotes": quotes,
                         "quote_judgements": judged,
                         "checks": check(text, theme, quotes, df, texts, weeks)})
+
+    # Deterministic keyword cross-check for refund delay (no LLM), shown on the dashboard
+    # next to the LLM sub-issues and labelled "keyword count".
+    for r in results:
+        if r["theme"] == refund_crosscheck.THEME:
+            r["keyword_counts"] = refund_crosscheck.crosscheck()[1]
 
     total = len(df)
     header = (f"{total} complaints analysed: 1–3★ Play Store + App Store reviews and synthetic "

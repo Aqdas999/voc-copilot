@@ -973,6 +973,41 @@
         "count_accuracy": true,
         "citation_validity": true,
         "problems": []
+      },
+      "keyword_counts": {
+        "label": "keyword count",
+        "method": "regex rules in src/refund_crosscheck.py; no LLM. Counts overlap.",
+        "theme_items": 92,
+        "counts": [
+          {
+            "rule": "cancel_or_undelivered",
+            "label": "mentions cancel / not delivered",
+            "keyword_count": 30,
+            "example_ids": [
+              "AS-0193",
+              "AS-0369"
+            ]
+          },
+          {
+            "rule": "return_or_pickup",
+            "label": "mentions return / pickup",
+            "keyword_count": 29,
+            "example_ids": [
+              "AS-0098",
+              "AS-0193"
+            ]
+          },
+          {
+            "rule": "credited_not_received",
+            "label": "says completed/credited/processed but not received",
+            "keyword_count": 11,
+            "example_ids": [
+              "PS-0154",
+              "PS-0319"
+            ]
+          }
+        ],
+        "none_of_these": 31
       }
     },
     {
