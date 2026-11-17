@@ -240,8 +240,7 @@ c1, c2, c3 = st.columns(3)
 with c1:
     card(f"{top_churn.capitalize()} churn rate vs overall",
          f"{by_theme.at[top_churn, 'churn']:.1f}% vs {overall_churn:.1f}%",
-         f"{by_theme.at[top_churn, 'churn'] / overall_churn:.1f}× the average share of complaints "
-         "that say they'll leave or warn others off.")
+         f"About {by_theme.at[top_churn, 'churn'] / overall_churn:.0f}× the overall churn rate.")
 with c2:
     change = week_share[w2] - week_share[w1]
     card(f"{top_churn.capitalize()} share of complaints, week over week",
@@ -384,11 +383,11 @@ with tab_themes:
         order = ordered_themes(table, by)
         table = table.loc[order]
 
-        # Theme shown in the detail panel: last click, else ?theme= in the URL, else the #1 theme
+        # Theme shown in the detail panel: last click, else ?theme= in the URL, else the
+        # headline's "where customers leave" theme (refund delay), else the #1 theme
         picked = st.session_state.get("picked_theme")
         linked = st.query_params.get("theme")
-        theme = (picked if picked in table.index
-                 else linked if linked in table.index else order[0])
+        theme = next(t for t in (picked, linked, top_churn, order[0]) if t in table.index)
 
         left, right = st.columns([1, 1], gap="large")
         with left:
