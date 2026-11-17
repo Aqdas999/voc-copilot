@@ -1,6 +1,8 @@
 # Myntra VoC Copilot: roadmap recommendations
 # RICE = Reach x Impact x Confidence / Effort
-#   reach      = number of complaints (1-3 star) the fix addresses
+#   reach      = number of complaints (1-3 star) the fix addresses, REAL REVIEWS ONLY
+#                (synthetic SYN- tickets are excluded; evidence lines may still quote
+#                theme totals that include them)
 #   impact     = 1 (low) .. 3 (high), based on churn rate and severity
 #   confidence = 0..1, how sure we are the evidence supports this fix
 #   effort     = person-weeks, a PM ESTIMATE that has NOT been validated with engineering
@@ -22,10 +24,11 @@ recommendations:
       the bank reference number (UTR) once credited so users can verify a "completed"
       refund themselves.
     themes: ["refund delay", "order cancelled"]
-    reach: 101
+    reach: 96
     reach_note: >-
-      refund delay 92 + 9 order-cancelled complaints that say the refund/money has not come
-      back (keyword count, src/refund_crosscheck.py; no overlap, each complaint has one theme)
+      Real reviews only (synthetic tickets excluded): refund delay 88 (92 minus 4 SYN) +
+      8 order-cancelled reviews that say the refund/money has not come back (9 minus 1 SYN;
+      keyword count, src/refund_crosscheck.py; no overlap, each complaint has one theme)
     impact: 3
     confidence: 0.8
     effort: 4
@@ -44,6 +47,7 @@ recommendations:
       threshold.
     themes: ["delivery delay"]
     reach: 282
+    reach_note: "Real reviews only (synthetic tickets excluded): delivery delay 282, none of them SYN."
     impact: 1.5
     confidence: 0.7
     effort: 6
@@ -59,7 +63,8 @@ recommendations:
       Let users reschedule a missed return pickup themselves, and auto-escalate to support
       when a pickup is missed.
     themes: ["return/exchange failed"]
-    reach: 100
+    reach: 99
+    reach_note: "Real reviews only (synthetic tickets excluded): return/exchange failed 99 (100 minus 1 SYN)."
     impact: 2
     confidence: 0.8
     effort: 4
@@ -76,6 +81,7 @@ watch:
       message on cash-on-delivery orders.
     themes: ["delivery agent behaviour"]
     reach: 26
+    reach_note: "Real reviews only (synthetic tickets excluded): delivery agent behaviour 26, none of them SYN."
     impact: 3
     confidence: 0.5
     effort: 1
