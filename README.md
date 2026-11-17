@@ -57,8 +57,7 @@ Snapshot collected 15 Nov 2026. Cleaning drops items under 3 words and duplicate
 
 - **No Reddit data.** Reddit blocks logged-out scripts from its public JSON endpoints
   (reddit.com returns HTTP 403; old.reddit.com redirects to login — both retested Nov 2026),
-  and the official API needs an app key. The PRAW-based scraper is ready: add
-  `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` to `.env` to enable it.
+  and the official API needs an app key.
 - **Short time window for English reviews.** Myntra gets ~400 English Play Store reviews a
   day, so the newest 5,000 cover only ~2 weeks (2–14 Nov 2026); App Store covers ~1 week.
   Trends are week-over-week at best. Hindi reviews span a year because they are rare.
@@ -74,7 +73,7 @@ Snapshot collected 15 Nov 2026. Cleaning drops items under 3 words and duplicate
   points to the app's review page.
 - **Synthetic tickets are fake** (20, hand-written) and always labeled `synthetic_ticket`.
 - **Reviews can name individuals** (e.g. staff). Text is kept unmodified for quote fidelity;
-  names should be masked in anything displayed.
+  names are masked in everything the dashboard displays.
 
 ## LLM providers (zero budget)
 
@@ -98,6 +97,9 @@ python -m src.llm               # smoke test: should print "OK"
 ```
 
 Each script runs standalone, e.g. `python -m src.extract`.
+
+Reddit (optional): the PRAW-based scraper is ready. Add `REDDIT_CLIENT_ID` /
+`REDDIT_CLIENT_SECRET` to `.env` to enable it.
 
 ## Dashboard
 
