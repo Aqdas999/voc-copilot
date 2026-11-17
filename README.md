@@ -99,8 +99,22 @@ python -m src.llm               # smoke test: should print "OK"
 
 Each script runs standalone, e.g. `python -m src.extract`.
 
+## Dashboard
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+Tabs: **Themes** (chart, table with churn rate and week-over-week share change, click a theme
+for its insight, sub-issues and verified quotes), **Churn alerts**, **Roadmap** (reads
+`data/roadmap.yaml`), **How it works / Evals**, and **Try it** (paste up to 20 reviews and run
+the v3 extraction live). Only "Try it" calls the LLM; everything else reads saved results.
+Add `?theme=refund%20delay` to the URL to open a theme's details directly.
+
 ## Privacy
 
 No usernames or personal data are stored. Synthetic tickets are always labeled `synthetic_ticket`.
+Person names in displayed text (e.g. a delivery agent's name) are masked as `[name]` by
+`src/mask.py`; the stored source text is unchanged so quotes stay exact.
 
 _Status: work in progress._

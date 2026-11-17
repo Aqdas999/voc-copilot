@@ -10,3 +10,4 @@ praw>=7.7                  # Reddit API client
 
 # App
 streamlit>=1.35
+pyyaml>=6.0                # reads data/roadmap.yaml in the dashboard
