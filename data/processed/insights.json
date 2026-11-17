@@ -1,0 +1,693 @@
+{
+  "generated": "2026-11-17",
+  "scope": "complaint set: 1-3★ Play Store + App Store reviews, plus synthetic tickets (4-5★ reviews were not extracted). All shares are % of complaints (1–3★).",
+  "extraction_prompt": "v3",
+  "insight_prompts": {
+    "sub_issues": "SUBISSUE_PROMPT_V1",
+    "assign": "ASSIGN_PROMPT_V1",
+    "wording": "INSIGHT_PROMPT_V1"
+  },
+  "model": [
+    "groq:openai/gpt-oss-120b"
+  ],
+  "total_complaints": 982,
+  "weeks_compared": [
+    "2026-11-02",
+    "2026-11-09"
+  ],
+  "themes": [
+    {
+      "rank": 1,
+      "theme": "delivery delay",
+      "sub_issues": [
+        {
+          "name": "Significant delivery delays beyond promised dates with generic or no communication",
+          "count": 185,
+          "pct_of_theme": 65.6
+        },
+        {
+          "name": "Orders not delivered with no status updates or contact from support",
+          "count": 55,
+          "pct_of_theme": 19.5
+        },
+        {
+          "name": "Delivery agents unresponsive or unreachable, preventing issue resolution",
+          "count": 20,
+          "pct_of_theme": 7.1
+        },
+        {
+          "name": "Orders marked as delivered but items never received",
+          "count": 11,
+          "pct_of_theme": 3.9
+        },
+        {
+          "name": "other / unclear",
+          "count": 11,
+          "pct_of_theme": 3.9
+        }
+      ],
+      "quotes": [
+        {
+          "id": "AS-0027",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Significant delivery delays beyond promised dates with generic or no communication",
+          "quote": "I’m canceled the order because of Myntra was not able to deliver the product on time",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0527",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "other / unclear",
+          "quote": "bahut ghatia app h delivery hamesha extreme delay",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=522e2784-c262-4351-b2ed-74dac15986c7"
+        },
+        {
+          "id": "PS-0285",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hi",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Orders not delivered with no status updates or contact from support",
+          "quote": "एक महीना हो गया आर्डर किए हुए अभी तक ऑर्डर डिलीवर नहीं किया गया है",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=0632af4a-3606-4b83-b74d-fabace7f4121"
+        },
+        {
+          "id": "AS-0058",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Delivery agents unresponsive or unreachable, preventing issue resolution",
+          "quote": "25 DAYS TO DELIVER YOUR ORDER . I ordered a pair of shoes",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0602",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Orders marked as delivered but items never received",
+          "quote": "Delivery person has blocked my phone number",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=3da2d512-6752-4827-87d9-adab51726244"
+        }
+      ],
+      "facts": {
+        "n": 282,
+        "total": 982,
+        "pct": 28.7,
+        "wk_prev_pct": 29.7,
+        "wk_last_pct": 29.5,
+        "trend": "roughly flat",
+        "top_sub": "Significant delivery delays beyond promised dates with generic or no communication",
+        "top_sub_n": 185,
+        "churn_n": 28,
+        "churn_pct": 9.9,
+        "cited_ids": [
+          "AS-0027",
+          "PS-0527",
+          "PS-0285"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Delivery delay accounts for 28.7% of complaints (1–3★) of 982 complaints (282 complaints), roughly flat from 29.7% to 29.5%, driven by Significant delivery delays beyond promised dates with generic or no communication (185 complaints); 28 complainants (9.9%) intend to leave or warn others [AS-0027, PS-0527, PS-0285].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    },
+    {
+      "rank": 2,
+      "theme": "customer support",
+      "sub_issues": [
+        {
+          "name": "Customer support unresponsive with no replies or callbacks",
+          "count": 31,
+          "pct_of_theme": 29.5
+        },
+        {
+          "name": "No human agents available, only AI chatbots",
+          "count": 17,
+          "pct_of_theme": 16.2
+        },
+        {
+          "name": "Support provides only generic template replies without resolving issues",
+          "count": 6,
+          "pct_of_theme": 5.7
+        },
+        {
+          "name": "Phone support calls repeatedly dropped or put on hold",
+          "count": 5,
+          "pct_of_theme": 4.8
+        },
+        {
+          "name": "other / unclear",
+          "count": 46,
+          "pct_of_theme": 43.8
+        }
+      ],
+      "quotes": [
+        {
+          "id": "AS-0398",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-09",
+          "sub_issue": "other / unclear",
+          "quote": "Customer service = 0, shipping mode = 0",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-2939",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-06",
+          "sub_issue": "No human agents available, only AI chatbots",
+          "quote": "tum log ko contact krne ka koi tareeka hai ke bot ke bharose company chla the",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=1220663f-5b0a-47ae-80b8-ea7e184d94b1"
+        },
+        {
+          "id": "PS-1606",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-09",
+          "sub_issue": "Customer support unresponsive with no replies or callbacks",
+          "quote": "worst customer care ever. pathetic app I'm going to uninstall this app",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=04544cba-0e4c-4522-a7dd-5c5f8970bd75"
+        },
+        {
+          "id": "AS-0115",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Phone support calls repeatedly dropped or put on hold",
+          "quote": "They have poor call customer support they asked you to wait but none of query get resolved",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "AS-0148",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Support provides only generic template replies without resolving issues",
+          "quote": "they will simply give template reply as”wait for 24 hours”",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        }
+      ],
+      "facts": {
+        "n": 105,
+        "total": 982,
+        "pct": 10.7,
+        "wk_prev_pct": 12.7,
+        "wk_last_pct": 9.5,
+        "trend": "falling",
+        "top_sub": "Customer support unresponsive with no replies or callbacks",
+        "top_sub_n": 31,
+        "churn_n": 7,
+        "churn_pct": 6.7,
+        "cited_ids": [
+          "AS-0398",
+          "PS-2939",
+          "PS-1606"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Customer support accounts for 10.7% of complaints (1–3★) of 982 complaints (105 complaints), falling from 12.7% to 9.5%, driven by Customer support unresponsive with no replies or callbacks (31 complaints); 7 complainants (6.7%) intend to leave or warn others [AS-0398, PS-2939, PS-1606].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    },
+    {
+      "rank": 3,
+      "theme": "return/exchange failed",
+      "sub_issues": [
+        {
+          "name": "Customer support unresponsive or bot closes issue without resolution",
+          "count": 15,
+          "pct_of_theme": 15.0
+        },
+        {
+          "name": "Return or exchange pickup never occurs or is repeatedly missed",
+          "count": 14,
+          "pct_of_theme": 14.0
+        },
+        {
+          "name": "Auto‑cancellation or rejection due to missing tags, labels or packaging errors",
+          "count": 14,
+          "pct_of_theme": 14.0
+        },
+        {
+          "name": "Refund not received or delayed after completed return or exchange",
+          "count": 9,
+          "pct_of_theme": 9.0
+        },
+        {
+          "name": "other / unclear",
+          "count": 48,
+          "pct_of_theme": 48.0
+        }
+      ],
+      "quotes": [
+        {
+          "id": "PS-0332",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "other / unclear",
+          "quote": "please refrain and go to FirstCry , amazon rather than myntra",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=b20a431a-eaf7-49e2-b328-809f33648573"
+        },
+        {
+          "id": "SYN-0010",
+          "source": "synthetic_ticket",
+          "synthetic": true,
+          "language": "hinglish",
+          "rating": null,
+          "date": "2026-11-08",
+          "sub_issue": "other / unclear",
+          "quote": "Exchange ke liye bola to bol rahe hain size available nahi hai",
+          "url": null
+        },
+        {
+          "id": "AS-0040",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Return or exchange pickup never occurs or is repeatedly missed",
+          "quote": "You are rescheduling pick up for past 1 week , no delivery agent calls",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0720",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Customer support unresponsive or bot closes issue without resolution",
+          "quote": "Myntra ki return policy bahut kharab hai",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=1d4811fd-8496-4f69-9be8-e38354e7a98b"
+        },
+        {
+          "id": "PS-0733",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Refund not received or delayed after completed return or exchange",
+          "quote": "return it is now almost a week but never initiated the return",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=d16981b4-36ce-44f0-a2ed-2c9f88c909d3"
+        }
+      ],
+      "facts": {
+        "n": 100,
+        "total": 982,
+        "pct": 10.2,
+        "wk_prev_pct": 9.4,
+        "wk_last_pct": 11.4,
+        "trend": "rising",
+        "top_sub": "Customer support unresponsive or bot closes issue without resolution",
+        "top_sub_n": 15,
+        "churn_n": 10,
+        "churn_pct": 10.0,
+        "cited_ids": [
+          "PS-0332",
+          "AS-0040",
+          "PS-0720"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Return/exchange failed accounts for 10.2% of complaints (1–3★) of 982 complaints (100 complaints), rising from 9.4% to 11.4%, driven by Customer support unresponsive or bot closes issue without resolution (15 complaints); 10 complainants (10.0%) intend to leave or warn others [PS-0332, AS-0040, PS-0720].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    },
+    {
+      "rank": 4,
+      "theme": "refund delay",
+      "sub_issues": [
+        {
+          "name": "Refund not received after order cancellation or non‑delivery",
+          "count": 36,
+          "pct_of_theme": 39.1
+        },
+        {
+          "name": "Refund not credited to original payment method after status shows completed",
+          "count": 22,
+          "pct_of_theme": 23.9
+        },
+        {
+          "name": "Refund pending or stuck after return pickup or exchange failure",
+          "count": 13,
+          "pct_of_theme": 14.1
+        },
+        {
+          "name": "Refund amount reduced or missing fees and offers",
+          "count": 9,
+          "pct_of_theme": 9.8
+        },
+        {
+          "name": "other / unclear",
+          "count": 12,
+          "pct_of_theme": 13.0
+        }
+      ],
+      "quotes": [
+        {
+          "id": "AS-0193",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-11",
+          "sub_issue": "Refund pending or stuck after return pickup or exchange failure",
+          "quote": "i cancelled three order more than 15 days i still haven’t received my money",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0154",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-14",
+          "sub_issue": "Refund not credited to original payment method after status shows completed",
+          "quote": "refund account me aata ni h..aur refund credited likh dete h",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=1e5081a7-d208-45d9-8ed0-7d0bea7317ec"
+        },
+        {
+          "id": "SYN-0018",
+          "source": "synthetic_ticket",
+          "synthetic": true,
+          "language": "en",
+          "rating": null,
+          "date": "2026-10-30",
+          "sub_issue": "Refund amount reduced or missing fees and offers",
+          "quote": "Refund amount is less than what I paid",
+          "url": null
+        },
+        {
+          "id": "AS-0408",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-09",
+          "sub_issue": "Refund not received after order cancellation or non‑delivery",
+          "quote": "refund not recived it dont order anything from myntra",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0776",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "other / unclear",
+          "quote": "main to payment kar ke fas gayi ab kabhi yahan se koi shopping nahi karungi",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=f7ba04d6-4aa5-40d1-89fd-df1920dc63fe"
+        }
+      ],
+      "facts": {
+        "n": 92,
+        "total": 982,
+        "pct": 9.4,
+        "wk_prev_pct": 7.9,
+        "wk_last_pct": 11.0,
+        "trend": "rising",
+        "top_sub": "Refund not received after order cancellation or non‑delivery",
+        "top_sub_n": 36,
+        "churn_n": 18,
+        "churn_pct": 19.6,
+        "cited_ids": [
+          "AS-0193",
+          "PS-0154",
+          "AS-0408"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Refund delay accounts for 9.4% of complaints (1–3★) of 982 complaints (92 complaints), rising from 7.9% to 11.0%, driven by Refund not received after order cancellation or non‑delivery (36 complaints); 18 complainants (19.6%) intend to leave or warn others [AS-0193, PS-0154, AS-0408].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    },
+    {
+      "rank": 5,
+      "theme": "order cancelled",
+      "sub_issues": [
+        {
+          "name": "Last‑minute cancellations near delivery with no refund",
+          "count": 26,
+          "pct_of_theme": 32.9
+        },
+        {
+          "name": "Repeated order cancellations with no clear reason or support",
+          "count": 21,
+          "pct_of_theme": 26.6
+        },
+        {
+          "name": "Orders auto‑cancelled by system without notification",
+          "count": 18,
+          "pct_of_theme": 22.8
+        },
+        {
+          "name": "Refund not processed after order cancellation",
+          "count": 13,
+          "pct_of_theme": 16.5
+        },
+        {
+          "name": "other / unclear",
+          "count": 1,
+          "pct_of_theme": 1.3
+        }
+      ],
+      "quotes": [
+        {
+          "id": "PS-1757",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-09",
+          "sub_issue": "Refund not processed after order cancellation",
+          "quote": "13 day to cancel a order and counting and didnt get any refund",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=7f0c457d-fa6a-445f-be58-ae7df15751d2"
+        },
+        {
+          "id": "SYN-0015",
+          "source": "synthetic_ticket",
+          "synthetic": true,
+          "language": "hinglish",
+          "rating": null,
+          "date": "2026-11-03",
+          "sub_issue": "Refund not processed after order cancellation",
+          "quote": "M-Now order auto-cancel ho gaya",
+          "url": null
+        },
+        {
+          "id": "AS-0130",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-12",
+          "sub_issue": "Orders auto‑cancelled by system without notification",
+          "quote": "Cancelled my order without me knowing",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0232",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hi",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Refund not processed after order cancellation",
+          "quote": "जब प्रोडक्ट आर्डर किया था, वह प्रोडक्ट भेजा ही नहीं, ऊपर से जब रिटर्न के लिए कहा गया तो मना कर दिया",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=b7292f67-fb6a-4269-8157-193ac99246ad"
+        },
+        {
+          "id": "PS-3746",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "hinglish",
+          "rating": "1",
+          "date": "2026-11-04",
+          "sub_issue": "Repeated order cancellations with no clear reason or support",
+          "quote": "inse kohi parcel order Kiya toh trr khudhi aapna parcel cancel karav dete he",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=82618cd6-e411-4ee2-96a5-5218560a2c93"
+        }
+      ],
+      "facts": {
+        "n": 79,
+        "total": 982,
+        "pct": 8.0,
+        "wk_prev_pct": 8.5,
+        "wk_last_pct": 7.7,
+        "trend": "falling",
+        "top_sub": "Last‑minute cancellations near delivery with no refund",
+        "top_sub_n": 26,
+        "churn_n": 10,
+        "churn_pct": 12.7,
+        "cited_ids": [
+          "PS-1757",
+          "AS-0130",
+          "PS-0232"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Order cancelled accounts for 8.0% of complaints (1–3★) of 982 complaints (79 complaints), falling from 8.5% to 7.7%, driven by Last‑minute cancellations near delivery with no refund (26 complaints); 10 complainants (12.7%) intend to leave or warn others [PS-1757, AS-0130, PS-0232].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    },
+    {
+      "rank": 6,
+      "theme": "wrong/damaged item",
+      "sub_issues": [
+        {
+          "name": "Wrong product received – incorrect size, colour, brand or missing items",
+          "count": 38,
+          "pct_of_theme": 51.4
+        },
+        {
+          "name": "Damaged, low‑quality, expired or used items delivered",
+          "count": 20,
+          "pct_of_theme": 27.0
+        },
+        {
+          "name": "Return or exchange requests repeatedly rejected or not processed",
+          "count": 11,
+          "pct_of_theme": 14.9
+        },
+        {
+          "name": "Refund not issued after return pickup or wrong/damaged delivery",
+          "count": 5,
+          "pct_of_theme": 6.8
+        }
+      ],
+      "quotes": [
+        {
+          "id": "PS-0170",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-14",
+          "sub_issue": "Wrong product received – incorrect size, colour, brand or missing items",
+          "quote": "one arrived in the wrong size. My style exchange was cancelled",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=66300223-da9f-4a8b-8af3-9eed182e7314"
+        },
+        {
+          "id": "SYN-0011",
+          "source": "synthetic_ticket",
+          "synthetic": true,
+          "language": "hinglish",
+          "rating": null,
+          "date": "2026-11-07",
+          "sub_issue": "Wrong product received – incorrect size, colour, brand or missing items",
+          "quote": "Order mein blue colour tha, aaya green",
+          "url": null
+        },
+        {
+          "id": "AS-0061",
+          "source": "appstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-13",
+          "sub_issue": "Refund not issued after return pickup or wrong/damaged delivery",
+          "quote": "Myntra delivered the same expired product 4 times in a row",
+          "url": "https://apps.apple.com/in/app/id907394059?see-all=reviews"
+        },
+        {
+          "id": "PS-0217",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "2",
+          "date": "2026-11-13",
+          "sub_issue": "Damaged, low‑quality, expired or used items delivered",
+          "quote": "when delivered it was empty....tube was really empty",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=234605b5-c2ac-4a6f-afeb-46a97aace188"
+        },
+        {
+          "id": "PS-1198",
+          "source": "playstore",
+          "synthetic": false,
+          "language": "en",
+          "rating": "1",
+          "date": "2026-11-11",
+          "sub_issue": "Return or exchange requests repeatedly rejected or not processed",
+          "quote": "they cancel the return & close the return window—leaving me with an unusable product",
+          "url": "https://play.google.com/store/apps/details?id=com.myntra.android&reviewId=c896513c-17e6-4d27-9f37-7a952b574014"
+        }
+      ],
+      "facts": {
+        "n": 74,
+        "total": 982,
+        "pct": 7.5,
+        "wk_prev_pct": 7.9,
+        "wk_last_pct": 7.1,
+        "trend": "falling",
+        "top_sub": "Wrong product received – incorrect size, colour, brand or missing items",
+        "top_sub_n": 38,
+        "churn_n": 10,
+        "churn_pct": 13.5,
+        "cited_ids": [
+          "PS-0170",
+          "AS-0061",
+          "PS-0217"
+        ]
+      },
+      "template_source": "llm",
+      "insight_template": "{theme} accounts for {pct} of {total} complaints ({n} complaints), {trend} from {wk_prev} to {wk_last}, driven by {top_sub} ({top_sub_n} complaints); {churn_n} complainants ({churn_pct}) intend to leave or warn others {ids}.",
+      "insight": "Wrong/damaged item accounts for 7.5% of complaints (1–3★) of 982 complaints (74 complaints), falling from 7.9% to 7.1%, driven by Wrong product received – incorrect size, colour, brand or missing items (38 complaints); 10 complainants (13.5%) intend to leave or warn others [PS-0170, AS-0061, PS-0217].",
+      "checks": {
+        "count_accuracy": true,
+        "citation_validity": true,
+        "problems": []
+      }
+    }
+  ]
+}

@@ -79,12 +79,18 @@ def weekly_table(df: pd.DataFrame) -> pd.DataFrame:
     pivot = (df.pivot_table(index="theme", columns="week", values="id",
                             aggfunc="count", fill_value=0)
                .reindex(columns=[c for c in order if c in set(df["week"])]))
+    sort_by = label(full_weeks[-1])
+    # Share = % of THAT week's complaint-set items. Raw counts can rise just because more
+    # reviews came in; a rising share means the theme grew relative to everything else.
+    for w in full_weeks:
+        col = label(w)
+        pivot[f"{col} %"] = (100 * pivot[col] / pivot[col].sum()).round(1)
     if len(full_weeks) >= 2:
         last, prev = label(full_weeks[-1]), label(full_weeks[-2])
         pivot["WoW change"] = pivot[last] - pivot[prev]
         pivot["WoW %"] = (100 * pivot["WoW change"] / pivot[prev].where(pivot[prev] > 0)).round(0)
-    return pivot.sort_values(pivot.columns[-3] if len(full_weeks) >= 2 else pivot.columns[-1],
-                             ascending=False)
+        pivot["share change (pts)"] = (pivot[f"{last} %"] - pivot[f"{prev} %"]).round(1)
+    return pivot.sort_values(sort_by, ascending=False)
 
 
 def main() -> None:
@@ -109,7 +115,8 @@ def main() -> None:
     print(f"\nTotal churn-Y: {int((df['churn_signal'] == 'Y').sum())}  |  "
           f"Quotes nulled by the guard: {int((df['quote_valid'] == False).sum())} of {len(df)}")  # noqa: E712
     print(f"\nWeek-over-week items per theme (weeks run Mon-Sun; data ends "
-          f"{df['date'].max():%d %b %Y}, so the latest week may be partial):\n")
+          f"{df['date'].max():%d %b %Y}, so the latest week may be partial).\n"
+          f"'wk ... %' columns = % of that week's complaints (1-3★):\n")
     print(weekly.to_string())
 
 
