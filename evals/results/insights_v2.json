@@ -1,0 +1,96 @@
+{
+  "insights_version": "v2",
+  "judge_prompt": "INSIGHT_JUDGE_PROMPT_V1",
+  "model": [
+    "groq:openai/gpt-oss-120b"
+  ],
+  "run_date": "2026-11-17",
+  "scale": "1-5",
+  "means": {
+    "specificity": 4.0,
+    "grounding": 4.17,
+    "actionability": 3.67
+  },
+  "scores": [
+    {
+      "theme": "delivery delay",
+      "insight": "Delivery delay: 282 complaints (28.7% of complaints), share flat from 29.7% to 29.5% week-over-week. Top issue: repeated missed promised delivery dates (137). 28 users (9.9%) say they'll leave or warn others. [PS-2400, PS-0965, PS-1306]",
+      "specificity": 4,
+      "grounding": 4,
+      "actionability": 3,
+      "reason": "The next step is vague – it only hints at investigating delays without pointing to a concrete fix."
+    },
+    {
+      "theme": "customer support",
+      "insight": "Customer support: 105 complaints (10.7% of complaints), share down from 12.7% to 9.5% week-over-week. Top issue: excessive hold time or no help (37). 7 users (6.7%) say they'll leave or warn others. [PS-0065, PS-2939, AS-0115]",
+      "specificity": 4,
+      "grounding": 4,
+      "actionability": 3,
+      "reason": "Actionability is weak; it mentions “investigate” but doesn’t specify what aspect of support to improve."
+    },
+    {
+      "theme": "return/exchange failed",
+      "insight": "Return/exchange failed: 100 complaints (10.2% of complaints), share up from 9.4% to 11.4% week-over-week. Top issues: return pickup missed or rescheduled (17), return exchange stuck in pending status (15). 10 users (10.0%) say they'll leave or warn others. [PS-0853, AS-0089, PS-2329]",
+      "specificity": 4,
+      "grounding": 4,
+      "actionability": 4,
+      "reason": "All parts are well‑backed, but the insight could include a sharper metric to guide the investigation."
+    },
+    {
+      "theme": "refund delay",
+      "insight": "Refund delay: 92 complaints (9.4% of complaints), share up from 7.9% to 11.0% week-over-week. Top issue: refund not received after cancellation (18). 18 users (19.6%) say they'll leave or warn others. [AS-0193, PS-0154, AS-0408]",
+      "specificity": 4,
+      "grounding": 5,
+      "actionability": 4,
+      "reason": "Grounding is perfect, but the action step could be more precise about which refund pipeline to audit."
+    },
+    {
+      "theme": "order cancelled",
+      "insight": "Order cancelled: 79 complaints (8.0% of complaints), share down from 8.5% to 7.7% week-over-week. Top issues: order cancelled without notice or reason (23), automatic system cancellations after long wait (22). 10 users (12.7%) say they'll leave or warn others. [PS-3746, AS-0130, PS-4473]",
+      "specificity": 4,
+      "grounding": 4,
+      "actionability": 4,
+      "reason": "Clear numbers and quotes, though the recommended action could name the auto‑cancellation rule to review."
+    },
+    {
+      "theme": "wrong/damaged item",
+      "insight": "Wrong/damaged item: 74 complaints (7.5% of complaints), share down from 7.9% to 7.1% week-over-week. Top issue: wrong item not returned or replaced (36). 10 users (13.5%) say they'll leave or warn others. [PS-0217, AS-0061, PS-1195]",
+      "specificity": 4,
+      "grounding": 4,
+      "actionability": 4,
+      "reason": "Well‑supported insight; the only shortfall is a slightly generic suggestion to improve QC."
+    }
+  ],
+  "automatic_checks": {
+    "delivery delay": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    },
+    "customer support": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    },
+    "return/exchange failed": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    },
+    "refund delay": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    },
+    "order cancelled": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    },
+    "wrong/damaged item": {
+      "count_accuracy": true,
+      "citation_validity": true,
+      "problems": []
+    }
+  }
+}

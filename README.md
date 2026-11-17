@@ -22,8 +22,20 @@ ingest (Play Store, App Store, synthetic) -> clean -> extract (LLM) -> cluster -
 | Clean & merge | `src/clean.py` | `data/processed/feedback.csv` |
 | Extract | `src/extract.py` | `data/processed/extractions_v3_complaints.jsonl` (1–3★ + SYN) |
 | Cluster | `src/cluster.py` | `theme_stats_v3_complaints.csv`, `theme_weekly_v3_complaints.csv` |
-| Insights | `src/insights.py` | quotes + RICE roadmap |
-| Evaluate | `evals/run_evals.py` | `evals/results/<prompt_version>.json` |
+| Insights | `src/insights.py` | `data/processed/insights.json` (sub-issues, judged quotes, one sentence per theme) |
+| Evaluate | `evals/run_evals.py`, `src/insights.py` | `evals/results/<prompt_version>.json`, `evals/results/insights_v2.json` |
+
+### Evaluation
+
+The eval rubric is maintained in the project PRD, not in this repo. What the code checks:
+
+- **Extractions** (`evals/run_evals.py`, against the human-labelled golden and holdout sets):
+  theme agreement, churn precision/recall, severity within ±1, quote fidelity.
+- **Insights** (`src/insights.py`): count accuracy (every number in a sentence is recomputed
+  from the data), citation validity (every cited ID exists, belongs to the theme, and its quote
+  is an exact substring), a quote-relevance judge (quotes scoring below 4/5 or mainly about
+  another theme are dropped), and an LLM judge scoring each insight 1–5 for specificity,
+  grounding and actionability.
 
 ### Data sources
 
